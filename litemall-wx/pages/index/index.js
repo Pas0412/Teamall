@@ -16,13 +16,18 @@ Page({
     banner: [],
     channel: [],
     coupon: [],
-    goodsCount: 0
+    goodsCount: 0,
+    menuList:[
+      {
+        
+      }
+    ]
   },
 
   onShareAppMessage: function() {
     return {
-      title: 'litemall小程序商场',
-      desc: '开源微信小程序商城',
+      title: '南方工匠',
+      desc: '南方工匠微信小程序商城',
       path: '/pages/index/index'
     }
   },

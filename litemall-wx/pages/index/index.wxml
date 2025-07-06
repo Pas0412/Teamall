@@ -25,7 +25,7 @@
         </navigator>
     </view>
     <view class="a-section a-coupon" wx:if="{{coupon.length > 0}}">
-        <view class="h">
+        <!-- <view class="h">
             <view class="title">
                 <view>
                     <navigator url="/pages/coupon/coupon">
@@ -33,12 +33,12 @@
                     </navigator>
                 </view>
             </view>
-        </view>
-        <view wx:if="{{coupon.length>0}}" class="b">
+        </view> -->
+        <!-- <view wx:if="{{coupon.length>0}}" class="b">
             <view class="coupon_item" wx:for="{{coupon}}" wx:for-index="index" wx:for-item="item" wx:key="id" bindtap="getCoupon" data-index="{{item.id}}">
                 <view class="coupon_price">
                     <view>
-                        <!-- <view class="tag"></view> -->
+                        <view class="tag"></view>
                         <view class="price">{{item.discount}}元</view>
                         <view class="p">满{{item.min}}元使用</view>
                     </view>
@@ -54,10 +54,10 @@
                     <view class="coupon_date" wx:if="{{item.days != 0}}">{{item.days}}天</view>
                     <view class="coupon_date" wx:else>{{item.startTime}} - {{item.endTime}}</view>
                 </view>
-            </view>
-        </view>
+            </view> -->
+        <!-- </view> -->
     </view>
-    <view class="a-section a-groupon" wx:if="{{groupons.length > 0}}">
+    <!-- <view class="a-section a-groupon" wx:if="{{groupons.length > 0}}">
         <view class="h">
             <view class="title">
                 <view>
@@ -90,8 +90,8 @@
                 </navigator>
             </view>
         </view>
-    </view>
-    <view class="a-section a-brand">
+    </view> -->
+    <!-- <view class="a-section a-brand">
         <view class="h">
             <navigator url="../brand/brand">
                 <text class="txt">品牌制造商直供</text>
@@ -111,12 +111,12 @@
                 </navigator>
             </view>
         </view>
-    </view>
+    </view> -->
     <view class="a-section a-new" wx:if="{{newGoods.length > 0}}">
         <view class="h">
             <view>
                 <navigator url="../newGoods/newGoods">
-                    <text class="txt">周一周四 · 新品首发</text>
+                    <text class="txt">在售商品</text>
                 </navigator>
             </view>
         </view>

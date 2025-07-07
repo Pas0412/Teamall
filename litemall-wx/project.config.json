@@ -329,14 +329,20 @@
         },
         {
           "id": -1,
-          "name": "售后详情",
+          "name": "成为会员",
           "pathName": "pages/vip/becomeVip/becomeVip",
           "query": ""
         },
         {
           "id": -1,
-          "name": "售后详情",
+          "name": "会员权益",
           "pathName": "pages/vip/vipHome/vipHome",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "余额管理",
+          "pathName": "pages/ucenter/balance/balance",
           "query": ""
         }
       ]

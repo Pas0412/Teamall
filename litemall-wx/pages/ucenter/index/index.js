@@ -106,6 +106,17 @@ Page({
       });
     };
   },
+  goBalance() {
+    if (this.data.hasLogin) {
+      wx.navigateTo({
+        url: "/pages/ucenter/balance/balance"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    };
+  },
   goGroupon() {
     if (this.data.hasLogin) {
       wx.navigateTo({

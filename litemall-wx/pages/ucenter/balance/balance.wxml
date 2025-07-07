@@ -1,0 +1,39 @@
+<!--pages/ucenter/balance/balance.wxml-->
+<!-- balance-management.wxml -->
+<view class="container">
+  <!-- 当前余额展示 -->
+  <view class="balance-card">
+    <text class="balance-title">当前余额</text>
+    <text class="balance-amount">¥{{currentBalance}}</text>
+    <view class="balance-update-time">更新时间：{{lastUpdated}}</view>
+  </view>
+
+  <!-- 快捷操作按钮 -->
+  <view class="quick-actions">
+    <button class="action-btn recharge" bindtap="onRecharge">充值</button>
+    <button class="action-btn transfer" bindtap="onTransfer">转账</button>
+    <button class="action-btn withdraw" bindtap="onWithdraw">提现</button>
+  </view>
+
+  <!-- 交易记录 -->
+  <view class="transaction-history">
+    <text class="history-title">最近交易记录</text>
+    <block wx:for="{{transactions}}" wx:key="id">
+      <view class="transaction-item">
+        <view class="transaction-info">
+          <text class="transaction-type">{{item.type}}</text>
+          <text class="transaction-date">{{item.date}}</text>
+        </view>
+        <text class="transaction-amount {{item.amount > 0 ? 'income' : 'expense'}}">
+          {{item.amount > 0 ? '+' : ''}}¥{{item.amount}}
+        </text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="bottom-actions">
+    <button class="btn detail" bindtap="showDetails">查看详情</button>
+    <button class="btn contact" bindtap="contactSupport">联系客服</button>
+  </view>
+</view>

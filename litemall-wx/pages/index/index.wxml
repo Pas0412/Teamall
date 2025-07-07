@@ -19,10 +19,14 @@
         </swiper-item>
     </swiper>
     <view class="m-menu">
-        <navigator class="item" url="/pages/category/category?id={{item.id}}" wx:for="{{channel}}" wx:key="id">
+        <!-- <navigator class="item" url="/pages/category/category?id={{item.id}}" wx:for="{{channel}}" wx:key="id">
             <image src="{{item.iconUrl}}" background-size="cover"></image>
             <text>{{item.name}}</text>
-        </navigator>
+        </navigator> -->
+        <view class="item" wx:for="{{menuList}}" wx:key="item.id">
+          <image src="{{item.iconUrl}}" background-size="cover"></image>
+            <text>{{item.name}}</text>
+        </view>
     </view>
     <view class="a-section a-coupon" wx:if="{{coupon.length > 0}}">
         <!-- <view class="h">
@@ -91,27 +95,25 @@
             </view>
         </view>
     </view> -->
-    <!-- <view class="a-section a-brand">
-        <view class="h">
+    <view class="a-section a-brand">
+        <!-- <view class="h">
             <navigator url="../brand/brand">
                 <text class="txt">品牌制造商直供</text>
             </navigator>
-        </view>
+        </view> -->
         <view class="b">
-            <view class="item item-1" wx:for="{{brands}}" wx:key="id">
-                <navigator url="/pages/brandDetail/brandDetail?id={{item.id}}">
+            <view class="item item-1" wx:for="{{vipList}}" wx:key="id">
+                <navigator url="{{item.url}}">
                     <view class="wrap">
                         <image class="img" src="{{item.picUrl}}" mode="aspectFill"></image>
                         <view class="mt">
                             <text class="brand">{{item.name}}</text>
-                            <text class="price">{{item.floorPrice}}</text>
-                            <text class="unit">元起</text>
                         </view>
                     </view>
                 </navigator>
             </view>
         </view>
-    </view> -->
+    </view>
     <view class="a-section a-new" wx:if="{{newGoods.length > 0}}">
         <view class="h">
             <view>
@@ -130,7 +132,7 @@
             </view>
         </view>
     </view>
-    <view class="a-section a-popular" wx:if="{{hotGoods.length > 0}}">
+    <!-- <view class="a-section a-popular" wx:if="{{hotGoods.length > 0}}">
         <view class="h">
             <view>
                 <navigator url="../hotGoods/hotGoods">
@@ -194,5 +196,5 @@
         <navigator url="/pages/category/category?id={{item.id}}" class="t" wx:if="{{item.goodsList.length>0}}">
             <view class="txt">{{'更多'+item.name+'好物 >'}}</view>
         </navigator>
-    </view>
+    </view> -->
 </view>

@@ -41,7 +41,7 @@
     "disableSWC": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.4.0",
+  "libVersion": "3.8.10",
   "appid": "wx20724742fc477949",
   "projectname": "litemall-wx",
   "simulatorType": "wechat",
@@ -326,6 +326,18 @@
           "pathName": "pages/ucenter/aftersaleDetail/aftersaleDetail",
           "query": "id=1",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "售后详情",
+          "pathName": "pages/vip/becomeVip/becomeVip",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "售后详情",
+          "pathName": "pages/vip/vipHome/vipHome",
+          "query": ""
         }
       ]
     }

@@ -19,7 +19,43 @@ Page({
     goodsCount: 0,
     menuList:[
       {
-        
+        id: 1,
+        iconUrl: '/static/images/tealeaves.png',
+        name: '茶叶'
+      },
+      {
+        id: 2,
+        iconUrl: '/static/images/services.png',
+        name: '服务'
+      },
+      {
+        id: 3,
+        iconUrl: '/static/images/teasets.png',
+        name: '茶器'
+      },
+      {
+        id: 4,
+        iconUrl: '/static/images/cookies.png',
+        name: '茶点'
+      },
+      {
+        id: 5,
+        iconUrl: '/static/images/drinks.png',
+        name: '酒水'
+      },
+    ],
+    vipList: [
+      {
+        id: 1,
+        picUrl: '/static/images/vip-1.jpeg',
+        name: '会员权益',
+        url: '/pages/vip/vipHome/vipHome'
+      },
+      {
+        id: 2,
+        picUrl: '/static/images/vip-2.jpeg',
+        name: '成为会员',
+        url: '/pages/vip/becomeVip/becomeVip'
       }
     ]
   },

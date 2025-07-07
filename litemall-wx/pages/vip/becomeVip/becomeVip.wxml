@@ -1,0 +1,16 @@
+<!--pages/vip/becomeVip/becomeVip.wxml-->
+<view class="container">
+  <view class="title">加入会员</view>
+
+  <view class="section">
+    <view class="benefit-title">会员权益</view>
+    <view class="benefit-item">专属会员价商品</view>
+  </view>
+
+  <view class="price-section">
+    <text class="price-label">支付金额：</text>
+    <text class="price">¥100</text>
+  </view>
+
+  <button class="pay-button" bindtap="handlePay">立即支付</button>
+</view>

@@ -166,16 +166,16 @@ export const asyncRoutes = [
           noCache: true
         }
       },
-      {
-        path: 'brand',
-        component: () => import('@/views/mall/brand'),
-        name: 'brand',
-        meta: {
-          perms: ['GET /admin/brand/list', 'POST /admin/brand/create', 'GET /admin/brand/read', 'POST /admin/brand/update', 'POST /admin/brand/delete'],
-          title: 'app.menu.mall_brand',
-          noCache: true
-        }
-      },
+      // {
+      //   path: 'brand',
+      //   component: () => import('@/views/mall/brand'),
+      //   name: 'brand',
+      //   meta: {
+      //     perms: ['GET /admin/brand/list', 'POST /admin/brand/create', 'GET /admin/brand/read', 'POST /admin/brand/update', 'POST /admin/brand/delete'],
+      //     title: 'app.menu.mall_brand',
+      //     noCache: true
+      //   }
+      // },
       {
         path: 'category',
         component: () => import('@/views/mall/category'),
@@ -303,80 +303,80 @@ export const asyncRoutes = [
           title: 'app.menu.promotion_ad',
           noCache: true
         }
-      },
-      {
-        path: 'coupon',
-        component: () => import('@/views/promotion/coupon'),
-        name: 'coupon',
-        meta: {
-          perms: ['GET /admin/coupon/list', 'POST /admin/coupon/create', 'POST /admin/coupon/update', 'POST /admin/coupon/delete'],
-          title: 'app.menu.promotion_coupon',
-          noCache: true
-        }
-      },
-      {
-        path: 'couponDetail',
-        component: () => import('@/views/promotion/couponDetail'),
-        name: 'couponDetail',
-        meta: {
-          perms: ['GET /admin/coupon/list', 'GET /admin/coupon/listuser'],
-          title: 'app.menu.promotion_coupon_detail',
-          noCache: true
-        },
-        hidden: true
-      },
-      {
-        path: 'topic',
-        component: () => import('@/views/promotion/topic'),
-        name: 'topic',
-        meta: {
-          perms: ['GET /admin/topic/list', 'POST /admin/topic/create', 'GET /admin/topic/read', 'POST /admin/topic/update', 'POST /admin/topic/delete'],
-          title: 'app.menu.promotion_topic',
-          noCache: true
-        }
-      },
-      {
-        path: 'topic-create',
-        component: () => import('@/views/promotion/topicCreate'),
-        name: 'topicCreate',
-        meta: {
-          perms: ['POST /admin/topic/create'],
-          title: 'app.menu.promotion_topic_create',
-          noCache: true
-        },
-        hidden: true
-      },
-      {
-        path: 'topic-edit',
-        component: () => import('@/views/promotion/topicEdit'),
-        name: 'topicEdit',
-        meta: {
-          perms: ['GET /admin/topic/read', 'POST /admin/topic/update'],
-          title: 'app.menu.promotion_topic_edit',
-          noCache: true
-        },
-        hidden: true
-      },
-      {
-        path: 'groupon-rule',
-        component: () => import('@/views/promotion/grouponRule'),
-        name: 'grouponRule',
-        meta: {
-          perms: ['GET /admin/groupon/list', 'POST /admin/groupon/create', 'POST /admin/groupon/update', 'POST /admin/groupon/delete'],
-          title: 'app.menu.promotion_groupon_rule',
-          noCache: true
-        }
-      },
-      {
-        path: 'groupon-activity',
-        component: () => import('@/views/promotion/grouponActivity'),
-        name: 'grouponActivity',
-        meta: {
-          perms: ['GET /admin/groupon/listRecord'],
-          title: 'app.menu.promotion_groupon_activity',
-          noCache: true
-        }
       }
+      // {
+      //   path: 'coupon',
+      //   component: () => import('@/views/promotion/coupon'),
+      //   name: 'coupon',
+      //   meta: {
+      //     perms: ['GET /admin/coupon/list', 'POST /admin/coupon/create', 'POST /admin/coupon/update', 'POST /admin/coupon/delete'],
+      //     title: 'app.menu.promotion_coupon',
+      //     noCache: true
+      //   }
+      // },
+      // {
+      //   path: 'couponDetail',
+      //   component: () => import('@/views/promotion/couponDetail'),
+      //   name: 'couponDetail',
+      //   meta: {
+      //     perms: ['GET /admin/coupon/list', 'GET /admin/coupon/listuser'],
+      //     title: 'app.menu.promotion_coupon_detail',
+      //     noCache: true
+      //   },
+      //   hidden: true
+      // },
+      // {
+      //   path: 'topic',
+      //   component: () => import('@/views/promotion/topic'),
+      //   name: 'topic',
+      //   meta: {
+      //     perms: ['GET /admin/topic/list', 'POST /admin/topic/create', 'GET /admin/topic/read', 'POST /admin/topic/update', 'POST /admin/topic/delete'],
+      //     title: 'app.menu.promotion_topic',
+      //     noCache: true
+      //   }
+      // },
+      // {
+      //   path: 'topic-create',
+      //   component: () => import('@/views/promotion/topicCreate'),
+      //   name: 'topicCreate',
+      //   meta: {
+      //     perms: ['POST /admin/topic/create'],
+      //     title: 'app.menu.promotion_topic_create',
+      //     noCache: true
+      //   },
+      //   hidden: true
+      // },
+      // {
+      //   path: 'topic-edit',
+      //   component: () => import('@/views/promotion/topicEdit'),
+      //   name: 'topicEdit',
+      //   meta: {
+      //     perms: ['GET /admin/topic/read', 'POST /admin/topic/update'],
+      //     title: 'app.menu.promotion_topic_edit',
+      //     noCache: true
+      //   },
+      //   hidden: true
+      // },
+      // {
+      //   path: 'groupon-rule',
+      //   component: () => import('@/views/promotion/grouponRule'),
+      //   name: 'grouponRule',
+      //   meta: {
+      //     perms: ['GET /admin/groupon/list', 'POST /admin/groupon/create', 'POST /admin/groupon/update', 'POST /admin/groupon/delete'],
+      //     title: 'app.menu.promotion_groupon_rule',
+      //     noCache: true
+      //   }
+      // },
+      // {
+      //   path: 'groupon-activity',
+      //   component: () => import('@/views/promotion/grouponActivity'),
+      //   name: 'grouponActivity',
+      //   meta: {
+      //     perms: ['GET /admin/groupon/listRecord'],
+      //     title: 'app.menu.promotion_groupon_activity',
+      //     noCache: true
+      //   }
+      // }
     ]
   },
 
@@ -541,47 +541,47 @@ export const asyncRoutes = [
       }
     ]
   },
-  {
-    path: 'external-link',
-    component: Layout,
-    redirect: 'noredirect',
-    alwaysShow: true,
-    name: 'externalLink',
-    meta: {
-      title: 'app.menu.external_link',
-      icon: 'link'
-    },
-    children: [
-      {
-        path: 'https://cloud.tencent.com/product/cos',
-        meta: { title: 'app.menu.external_link_tencent_cos', icon: 'link' }
-      },
-      {
-        path: 'https://cloud.tencent.com/product/sms',
-        meta: { title: 'app.menu.external_link_tencent_sms', icon: 'link' }
-      },
-      {
-        path: 'https://pay.weixin.qq.com/index.php/core/home/login',
-        meta: { title: 'app.menu.external_link_weixin_pay', icon: 'link' }
-      },
-      {
-        path: 'https://mpkf.weixin.qq.com/',
-        meta: { title: 'app.menu.external_link_weixin_mpkf', icon: 'link' }
-      },
-      {
-        path: 'https://www.alibabacloud.com/zh/product/oss',
-        meta: { title: 'app.menu.external_link_alibaba_oss', icon: 'link' }
-      },
-      {
-        path: 'https://www.qiniu.com/products/kodo',
-        meta: { title: 'app.menu.external_link_qiniu_kodo', icon: 'link' }
-      },
-      {
-        path: 'http://www.kdniao.com/api-track',
-        meta: { title: 'app.menu.external_link_kdniao_api', icon: 'link' }
-      }
-    ]
-  },
+  // {
+  //   path: 'external-link',
+  //   component: Layout,
+  //   redirect: 'noredirect',
+  //   alwaysShow: true,
+  //   name: 'externalLink',
+  //   meta: {
+  //     title: 'app.menu.external_link',
+  //     icon: 'link'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'https://cloud.tencent.com/product/cos',
+  //       meta: { title: 'app.menu.external_link_tencent_cos', icon: 'link' }
+  //     },
+  //     {
+  //       path: 'https://cloud.tencent.com/product/sms',
+  //       meta: { title: 'app.menu.external_link_tencent_sms', icon: 'link' }
+  //     },
+  //     {
+  //       path: 'https://pay.weixin.qq.com/index.php/core/home/login',
+  //       meta: { title: 'app.menu.external_link_weixin_pay', icon: 'link' }
+  //     },
+  //     {
+  //       path: 'https://mpkf.weixin.qq.com/',
+  //       meta: { title: 'app.menu.external_link_weixin_mpkf', icon: 'link' }
+  //     },
+  //     {
+  //       path: 'https://www.alibabacloud.com/zh/product/oss',
+  //       meta: { title: 'app.menu.external_link_alibaba_oss', icon: 'link' }
+  //     },
+  //     {
+  //       path: 'https://www.qiniu.com/products/kodo',
+  //       meta: { title: 'app.menu.external_link_qiniu_kodo', icon: 'link' }
+  //     },
+  //     {
+  //       path: 'http://www.kdniao.com/api-track',
+  //       meta: { title: 'app.menu.external_link_kdniao_api', icon: 'link' }
+  //     }
+  //   ]
+  // },
   {
     path: '/profile',
     component: Layout,

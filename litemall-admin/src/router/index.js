@@ -176,6 +176,17 @@ export const asyncRoutes = [
       //     noCache: true
       //   }
       // },
+
+      {
+        path: 'commission',
+        component: () => import('@/views/mall/commission'),
+        name: 'commission',
+        meta: {
+          perms: [],
+          title: 'app.menu.mall_commission',
+          noCache: true
+        }
+      },
       {
         path: 'category',
         component: () => import('@/views/mall/category'),
@@ -206,16 +217,16 @@ export const asyncRoutes = [
           noCache: true
         }
       },
-      {
-        path: 'issue',
-        component: () => import('@/views/mall/issue'),
-        name: 'issue',
-        meta: {
-          perms: ['GET /admin/issue/list', 'POST /admin/issue/create', 'GET /admin/issue/read', 'POST /admin/issue/update', 'POST /admin/issue/delete'],
-          title: 'app.menu.mall_issue',
-          noCache: true
-        }
-      },
+      // {
+      //   path: 'issue',
+      //   component: () => import('@/views/mall/issue'),
+      //   name: 'issue',
+      //   meta: {
+      //     perms: ['GET /admin/issue/list', 'POST /admin/issue/create', 'GET /admin/issue/read', 'POST /admin/issue/update', 'POST /admin/issue/delete'],
+      //     title: 'app.menu.mall_issue',
+      //     noCache: true
+      //   }
+      // },
       {
         path: 'keyword',
         component: () => import('@/views/mall/keyword'),

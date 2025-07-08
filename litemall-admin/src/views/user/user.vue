@@ -3,9 +3,9 @@
 
     <!-- 查询和其他操作 -->
     <div class="filter-container">
-      <el-input v-model="listQuery.username" clearable class="filter-item" style="width: 200px;" :placeholder="$t('user_user.placeholder.filter_username')"/>
-      <el-input v-model="listQuery.userId" clearable class="filter-item" style="width: 200px;" :placeholder="$t('user_user.placeholder.filter_user_id')"/>
-      <el-input v-model="listQuery.mobile" clearable class="filter-item" style="width: 200px;" :placeholder="$t('user_user.placeholder.filter_mobile')"/>
+      <el-input v-model="listQuery.username" clearable class="filter-item" style="width: 200px;" :placeholder="$t('user_user.placeholder.filter_username')" />
+      <el-input v-model="listQuery.userId" clearable class="filter-item" style="width: 200px;" :placeholder="$t('user_user.placeholder.filter_user_id')" />
+      <el-input v-model="listQuery.mobile" clearable class="filter-item" style="width: 200px;" :placeholder="$t('user_user.placeholder.filter_mobile')" />
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ $t('app.button.search') }}</el-button>
       <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">{{ $t('app.button.download') }}</el-button>
     </div>
@@ -16,33 +16,38 @@
 
       <el-table-column align="center" :label="$t('user_user.table.nickname')" prop="nickname" />
 
-      <el-table-column align="center" :label="$t('user_user.table.avatar')" width="80">
+      <!-- <el-table-column align="center" :label="$t('user_user.table.balance')" width="80">
         <template slot-scope="scope">
-          <el-avatar :src="scope.row.avatar" />
+          <el-avatar :src="scope.row.balance" />
         </template>
-      </el-table-column>
+      </el-table-column> -->
+
+      <el-table-column align="center" :label="$t('user_user.table.balance')" prop="balance" />
 
       <el-table-column align="center" :label="$t('user_user.table.mobile')" prop="mobile" />
 
-      <el-table-column align="center" :label="$t('user_user.table.gender')" prop="gender">
+      <el-table-column align="center" :label="$t('user_user.table.agent_role_id')" prop="agent_role_id" />
+      <!-- <el-table-column align="center" :label="$t('user_user.table.agent_role_id')" prop="agent_role_id">
         <template slot-scope="scope">
-          <el-tag >{{ genderDic[scope.row.gender] }}</el-tag>
+          <el-tag >{{ genderDic[scope.row.agent_role_id] }}</el-tag>
         </template>
-      </el-table-column>
-
-      <el-table-column align="center" :label="$t('user_user.table.birthday')" prop="birthday" />
+      </el-table-column> -->
 
       <el-table-column align="center" :label="$t('user_user.table.user_level')" prop="userLevel">
         <template slot-scope="scope">
-          <el-tag >{{ levelDic[scope.row.userLevel] }}</el-tag>
+          <el-tag>{{ levelDic[scope.row.userLevel] }}</el-tag>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" :label="$t('user_user.table.status')" prop="status">
+      <el-table-column align="center" :label="$t('user_user.table.parent_inviter_id')" prop="parent_inviter_id" />
+
+      <el-table-column align="center" :label="$t('user_user.table.child_inviter_id')" prop="child_inviter_id" />
+      <!-- <el-table-column align="center" :label="$t('user_user.table.status')" prop="status">
         <template slot-scope="scope">
           <el-tag>{{ statusDic[scope.row.status] }}</el-tag>
         </template>
-      </el-table-column>
+      </el-table-column> -->
+
       <el-table-column align="center" :label="$t('user_user.table.actions')" width="250" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleDetail(scope.row)">{{ $t('app.button.detail') }}</el-button>
@@ -82,7 +87,7 @@
 </template>
 
 <script>
-import { fetchList ,userDetail ,updateUser } from '@/api/user'
+import { fetchList, userDetail, updateUser } from '@/api/user'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
@@ -107,7 +112,7 @@ export default {
       levelDic: ['普通用户', 'VIP用户', '高级VIP用户'],
       statusDic: ['可用', '禁用', '注销'],
       userDialogVisible: false,
-      userDetail:{
+      userDetail: {
       }
     }
   },
@@ -117,14 +122,14 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      if(this.listQuery.userId){
+      if (this.listQuery.userId) {
         userDetail(this.listQuery.userId).then(response => {
-          this.list = [];
-          if(response.data.data){
+          this.list = []
+          if (response.data.data) {
             this.list.push(response.data.data)
             this.total = 1
             this.listLoading = false
-          }else{
+          } else {
             this.list = []
             this.total = 0
             this.listLoading = false
@@ -134,7 +139,7 @@ export default {
           this.total = 0
           this.listLoading = false
         })
-      }else{
+      } else {
         fetchList(this.listQuery).then(response => {
           this.list = response.data.data.list
           this.total = response.data.data.total
@@ -163,8 +168,8 @@ export default {
       this.userDetail = row
       this.userDialogVisible = true
     },
-    handleUserUpdate(){
-     updateUser(this.userDetail)
+    handleUserUpdate() {
+      updateUser(this.userDetail)
         .then((response) => {
           this.userDialogVisible = false
           this.$notify.success({

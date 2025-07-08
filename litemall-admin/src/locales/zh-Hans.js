@@ -17,6 +17,7 @@ export default {
       mall: '商场管理',
       mall_region: '行政区域',
       mall_brand: '品牌制造商',
+      mall_commission: '佣金设置',
       mall_category: '商品类目',
       mall_order: '订单管理',
       mall_aftersale: '售后管理',
@@ -131,7 +132,11 @@ export default {
       birthday: '生日',
       user_level: '用户等级',
       status: '状态',
-      actions: '操作'
+      actions: '操作',
+      balance: '余额',
+      agent_role_id: '代理角色ID',
+      parent_inviter_id: '父邀请人ID',
+      child_inviter_id: '子邀请人ID'
     },
     dialog: {
       edit: '用户编辑'

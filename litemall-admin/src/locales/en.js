@@ -143,7 +143,9 @@ export default {
       mobile: 'Mobile',
       gender: 'Gender',
       user_level: 'Level',
-      status: 'Status'
+      status: 'Status',
+      is_agent: 'Is agent',
+      address: 'Agent address'
     },
     placeholder: {
       filter_username: 'Username',
@@ -151,7 +153,12 @@ export default {
       filter_mobile: 'Mobile',
       gender: 'Please choose',
       user_level: 'Please choose',
-      status: 'Please choose'
+      status: 'Please choose',
+      is_agent: 'Please choose',
+      address: 'Please choose',
+      province: 'Please choose',
+      city: 'Please choose',
+      district: 'Please choose'
     }
   },
   user_address: {

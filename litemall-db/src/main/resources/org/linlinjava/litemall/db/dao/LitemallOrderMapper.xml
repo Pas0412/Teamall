@@ -37,7 +37,7 @@
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
-    <result column="agent_role_id" jdbcType="BIGINT" property="agentRoleId" />
+    <result column="agent_role_id" jdbcType="INTEGER" property="agentRoleId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -256,7 +256,7 @@
       #{refundType,jdbcType=VARCHAR}, #{refundContent,jdbcType=VARCHAR}, #{refundTime,jdbcType=TIMESTAMP}, 
       #{confirmTime,jdbcType=TIMESTAMP}, #{comments,jdbcType=SMALLINT}, #{endTime,jdbcType=TIMESTAMP}, 
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, 
-      #{agentRoleId,jdbcType=BIGINT})
+      #{agentRoleId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="org.linlinjava.litemall.db.domain.LitemallOrder">
     <!--
@@ -454,7 +454,7 @@
         #{deleted,jdbcType=BIT},
       </if>
       <if test="agentRoleId != null">
-        #{agentRoleId,jdbcType=BIGINT},
+        #{agentRoleId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -569,7 +569,7 @@
         deleted = #{record.deleted,jdbcType=BIT},
       </if>
       <if test="record.agentRoleId != null">
-        agent_role_id = #{record.agentRoleId,jdbcType=BIGINT},
+        agent_role_id = #{record.agentRoleId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -613,7 +613,7 @@
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=BIT},
-      agent_role_id = #{record.agentRoleId,jdbcType=BIGINT}
+      agent_role_id = #{record.agentRoleId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -716,7 +716,7 @@
         deleted = #{deleted,jdbcType=BIT},
       </if>
       <if test="agentRoleId != null">
-        agent_role_id = #{agentRoleId,jdbcType=BIGINT},
+        agent_role_id = #{agentRoleId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -757,7 +757,7 @@
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT},
-      agent_role_id = #{agentRoleId,jdbcType=BIGINT}
+      agent_role_id = #{agentRoleId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallOrderExample" resultMap="BaseResultMap">

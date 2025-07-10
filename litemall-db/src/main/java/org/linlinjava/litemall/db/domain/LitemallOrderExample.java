@@ -4280,7 +4280,7 @@ public class LitemallOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdEqualTo(Long value) {
+        public Criteria andAgentRoleIdEqualTo(Integer value) {
             addCriterion("agent_role_id =", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -4296,7 +4296,7 @@ public class LitemallOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdNotEqualTo(Long value) {
+        public Criteria andAgentRoleIdNotEqualTo(Integer value) {
             addCriterion("agent_role_id <>", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -4312,7 +4312,7 @@ public class LitemallOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdGreaterThan(Long value) {
+        public Criteria andAgentRoleIdGreaterThan(Integer value) {
             addCriterion("agent_role_id >", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -4328,7 +4328,7 @@ public class LitemallOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andAgentRoleIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("agent_role_id >=", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -4344,7 +4344,7 @@ public class LitemallOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdLessThan(Long value) {
+        public Criteria andAgentRoleIdLessThan(Integer value) {
             addCriterion("agent_role_id <", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -4360,7 +4360,7 @@ public class LitemallOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdLessThanOrEqualTo(Long value) {
+        public Criteria andAgentRoleIdLessThanOrEqualTo(Integer value) {
             addCriterion("agent_role_id <=", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -4376,22 +4376,22 @@ public class LitemallOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdIn(List<Long> values) {
+        public Criteria andAgentRoleIdIn(List<Integer> values) {
             addCriterion("agent_role_id in", values, "agentRoleId");
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdNotIn(List<Long> values) {
+        public Criteria andAgentRoleIdNotIn(List<Integer> values) {
             addCriterion("agent_role_id not in", values, "agentRoleId");
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdBetween(Long value1, Long value2) {
+        public Criteria andAgentRoleIdBetween(Integer value1, Integer value2) {
             addCriterion("agent_role_id between", value1, value2, "agentRoleId");
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdNotBetween(Long value1, Long value2) {
+        public Criteria andAgentRoleIdNotBetween(Integer value1, Integer value2) {
             addCriterion("agent_role_id not between", value1, value2, "agentRoleId");
             return (Criteria) this;
         }

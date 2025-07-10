@@ -147,7 +147,9 @@ export default {
       mobile: '用户手机',
       gender: '用户性别',
       user_level: '用户等级',
-      status: '状态'
+      status: '状态',
+      is_agent: '是否代理',
+      address: '代理区域'
     },
     placeholder: {
       filter_username: '请输入用户名',
@@ -155,7 +157,12 @@ export default {
       filter_mobile: '请输入手机号',
       gender: '请选择',
       user_level: '请选择',
-      status: '请选择'
+      status: '请选择',
+      is_agent: '请选择',
+      address: '请输入地址',
+      province: '省',
+      city: '市',
+      county: '区'
     }
   },
   user_address: {

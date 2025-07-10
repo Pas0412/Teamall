@@ -5,10 +5,12 @@ import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.admin.vo.RegionVo;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.db.domain.LitemallRegion;
+import org.linlinjava.litemall.db.domain.LitemallUser;
 import org.linlinjava.litemall.db.service.LitemallRegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +33,12 @@ public class AdminRegionController {
     public Object clist(@NotNull Integer id) {
         List<LitemallRegion> regionList = regionService.queryByPid(id);
         return ResponseUtil.okList(regionList);
+    }
+
+    @GetMapping("/detail")
+    public Object getRegionCode(@NotNull Integer id){
+        LitemallRegion region = regionService.findById(id);
+        return ResponseUtil.ok(region);
     }
 
     @GetMapping("/list")

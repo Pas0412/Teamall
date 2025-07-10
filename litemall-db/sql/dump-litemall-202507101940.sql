@@ -74,7 +74,7 @@ CREATE TABLE `litemall_address` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='收货地址表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='收货地址表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,6 +83,7 @@ CREATE TABLE `litemall_address` (
 
 LOCK TABLES `litemall_address` WRITE;
 /*!40000 ALTER TABLE `litemall_address` DISABLE KEYS */;
+INSERT INTO `litemall_address` VALUES (2,'user123',1,'北京市','市辖区','东城区','xxx','110101',NULL,'18812341234',1,'2025-07-10 17:16:03','2025-07-10 17:16:03',0);
 /*!40000 ALTER TABLE `litemall_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +115,7 @@ CREATE TABLE `litemall_admin` (
 
 LOCK TABLES `litemall_admin` WRITE;
 /*!40000 ALTER TABLE `litemall_admin` DISABLE KEYS */;
-INSERT INTO `litemall_admin` VALUES (1,'admin123','$2a$10$.rEfyBb/GURD9P2p0fRg/OAJGloGNDkJS4lY0cQHeqDgsbdTylBpu','127.0.0.1','2025-07-08 09:23:23','https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif','2018-02-01 00:00:00','2025-07-08 09:23:23',0,'[1]'),(4,'promotion123','$2a$10$wDZLOLLnzZ1EFZ3ldZ1XFOUWDEX6TnQCUFdJz4g.PoMaLTzS8TjWq','127.0.0.1','2025-07-08 09:21:09','https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif','2019-01-07 15:16:59','2025-07-08 09:21:09',0,'[3]'),(5,'mall123','$2a$10$aCtsc4rG6KmxQ59.IkYse.oRyKuwQoU2CPCmxSdB.d5nXq6aw/z4O','127.0.0.1','2025-07-08 09:21:44','https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif','2019-01-07 15:17:25','2025-07-08 09:21:44',0,'[2]');
+INSERT INTO `litemall_admin` VALUES (1,'admin123','$2a$10$.rEfyBb/GURD9P2p0fRg/OAJGloGNDkJS4lY0cQHeqDgsbdTylBpu','127.0.0.1','2025-07-10 16:48:40','https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif','2018-02-01 00:00:00','2025-07-10 16:48:40',0,'[1]'),(4,'promotion123','$2a$10$wDZLOLLnzZ1EFZ3ldZ1XFOUWDEX6TnQCUFdJz4g.PoMaLTzS8TjWq','127.0.0.1','2025-07-08 09:21:09','https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif','2019-01-07 15:16:59','2025-07-08 09:21:09',0,'[3]'),(5,'mall123','$2a$10$aCtsc4rG6KmxQ59.IkYse.oRyKuwQoU2CPCmxSdB.d5nXq6aw/z4O','127.0.0.1','2025-07-08 09:21:44','https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif','2019-01-07 15:17:25','2025-07-08 09:21:44',0,'[2]');
 /*!40000 ALTER TABLE `litemall_admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,6 +167,7 @@ CREATE TABLE `litemall_agent_commission_config` (
   `config_value` decimal(5,2) NOT NULL COMMENT '抽成比例，如 30.00 表示 30%',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `config_key` (`config_key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='代理抽成配置表';
@@ -177,7 +179,7 @@ CREATE TABLE `litemall_agent_commission_config` (
 
 LOCK TABLES `litemall_agent_commission_config` WRITE;
 /*!40000 ALTER TABLE `litemall_agent_commission_config` DISABLE KEYS */;
-INSERT INTO `litemall_agent_commission_config` VALUES (1,'direct_vip',30.00,'2025-07-08 11:27:04','2025-07-08 11:27:04'),(2,'rebuy_under_direct',10.00,'2025-07-08 11:27:04','2025-07-08 11:27:04'),(3,'county_agent',20.00,'2025-07-08 11:27:04','2025-07-08 11:27:04'),(4,'city_agent',15.00,'2025-07-08 11:27:04','2025-07-08 11:27:04'),(5,'province_agent',10.00,'2025-07-08 11:27:04','2025-07-08 11:27:04');
+INSERT INTO `litemall_agent_commission_config` VALUES (1,'direct_vip',30.00,'2025-07-08 11:27:04','2025-07-10 10:39:10',0),(2,'rebuy_under_direct',10.00,'2025-07-08 11:27:04','2025-07-10 10:34:29',0),(3,'county_agent',20.00,'2025-07-08 11:27:04','2025-07-10 10:34:29',0),(4,'city_agent',15.00,'2025-07-08 11:27:04','2025-07-10 10:34:29',0),(5,'province_agent',10.00,'2025-07-08 11:27:04','2025-07-10 10:34:29',0);
 /*!40000 ALTER TABLE `litemall_agent_commission_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,7 +237,7 @@ CREATE TABLE `litemall_cart` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='购物车商品表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='购物车商品表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,6 +246,7 @@ CREATE TABLE `litemall_cart` (
 
 LOCK TABLES `litemall_cart` WRITE;
 /*!40000 ALTER TABLE `litemall_cart` DISABLE KEYS */;
+INSERT INTO `litemall_cart` VALUES (2,1,1116011,'1116011','蔓越莓曲奇 200克',167,36.00,1,'[\"标准\"]',1,'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png','2025-07-10 17:00:34','2025-07-10 17:00:34',0);
 /*!40000 ALTER TABLE `litemall_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -471,7 +474,7 @@ CREATE TABLE `litemall_footprint` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户浏览足迹表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户浏览足迹表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -480,7 +483,7 @@ CREATE TABLE `litemall_footprint` (
 
 LOCK TABLES `litemall_footprint` WRITE;
 /*!40000 ALTER TABLE `litemall_footprint` DISABLE KEYS */;
-INSERT INTO `litemall_footprint` VALUES (1,4,1109008,'2019-12-08 19:12:05','2019-12-08 19:12:05',0),(2,4,1110016,'2019-12-08 19:13:42','2019-12-08 19:13:42',0),(3,1,1116011,'2025-07-07 15:36:13','2025-07-07 15:36:13',0);
+INSERT INTO `litemall_footprint` VALUES (1,4,1109008,'2019-12-08 19:12:05','2019-12-08 19:12:05',0),(2,4,1110016,'2019-12-08 19:13:42','2019-12-08 19:13:42',0),(3,1,1116011,'2025-07-07 15:36:13','2025-07-07 15:36:13',0),(4,1,1116011,'2025-07-10 17:00:28','2025-07-10 17:00:28',0);
 /*!40000 ALTER TABLE `litemall_footprint` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -771,7 +774,7 @@ CREATE TABLE `litemall_log` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='操作日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='操作日志表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -780,7 +783,7 @@ CREATE TABLE `litemall_log` (
 
 LOCK TABLES `litemall_log` WRITE;
 /*!40000 ALTER TABLE `litemall_log` DISABLE KEYS */;
-INSERT INTO `litemall_log` VALUES (1,'admin123','0:0:0:0:0:0:0:1',1,'登录',1,'','','2019-12-08 19:12:40','2019-12-08 19:12:40',0),(43,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-07 14:39:12','2025-07-07 14:39:12',0),(44,'admin123','127.0.0.1',1,'退出',1,'','','2025-07-08 09:20:53','2025-07-08 09:20:53',0),(45,'promotion123','127.0.0.1',1,'登录',1,'','','2025-07-08 09:21:09','2025-07-08 09:21:09',0),(46,'promotion123','127.0.0.1',1,'退出',1,'','','2025-07-08 09:21:36','2025-07-08 09:21:36',0),(47,'mall123','127.0.0.1',1,'登录',1,'','','2025-07-08 09:21:44','2025-07-08 09:21:44',0),(48,'mall123','127.0.0.1',1,'退出',1,'','','2025-07-08 09:21:56','2025-07-08 09:21:56',0),(49,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-08 09:23:23','2025-07-08 09:23:23',0);
+INSERT INTO `litemall_log` VALUES (1,'admin123','0:0:0:0:0:0:0:1',1,'登录',1,'','','2019-12-08 19:12:40','2019-12-08 19:12:40',0),(43,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-07 14:39:12','2025-07-07 14:39:12',0),(44,'admin123','127.0.0.1',1,'退出',1,'','','2025-07-08 09:20:53','2025-07-08 09:20:53',0),(45,'promotion123','127.0.0.1',1,'登录',1,'','','2025-07-08 09:21:09','2025-07-08 09:21:09',0),(46,'promotion123','127.0.0.1',1,'退出',1,'','','2025-07-08 09:21:36','2025-07-08 09:21:36',0),(47,'mall123','127.0.0.1',1,'登录',1,'','','2025-07-08 09:21:44','2025-07-08 09:21:44',0),(48,'mall123','127.0.0.1',1,'退出',1,'','','2025-07-08 09:21:56','2025-07-08 09:21:56',0),(49,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-08 09:23:23','2025-07-08 09:23:23',0),(50,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 11:23:45','2025-07-09 11:23:45',0),(51,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 14:15:48','2025-07-09 14:15:48',0),(52,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 14:18:37','2025-07-09 14:18:37',0),(53,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 14:19:38','2025-07-09 14:19:38',0),(54,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 14:21:06','2025-07-09 14:21:06',0),(55,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 14:24:42','2025-07-09 14:24:42',0),(56,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 14:28:50','2025-07-09 14:28:50',0),(57,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 14:54:18','2025-07-09 14:54:18',0),(58,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 16:16:03','2025-07-09 16:16:03',0),(59,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 17:49:41','2025-07-09 17:49:41',0),(60,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-09 23:09:12','2025-07-09 23:09:12',0),(61,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-10 09:35:16','2025-07-10 09:35:16',0),(62,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-10 09:54:34','2025-07-10 09:54:34',0),(63,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-10 10:18:45','2025-07-10 10:18:45',0),(64,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-10 10:32:02','2025-07-10 10:32:02',0),(65,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-10 15:55:23','2025-07-10 15:55:23',0),(66,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-10 16:00:55','2025-07-10 16:00:55',0),(67,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-10 16:32:06','2025-07-10 16:32:06',0),(68,'admin123','127.0.0.1',1,'登录',1,'','','2025-07-10 16:48:40','2025-07-10 16:48:40',0);
 /*!40000 ALTER TABLE `litemall_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -880,7 +883,7 @@ CREATE TABLE `litemall_order` (
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
-  `agent_role_id` bigint unsigned DEFAULT NULL COMMENT '代理身份ID',
+  `agent_role_id` int DEFAULT NULL COMMENT '代理身份ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='订单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1170,9 +1173,9 @@ CREATE TABLE `litemall_user` (
   `first_vip_time` datetime DEFAULT NULL COMMENT '初次成为会员时间',
   `become_vip_time` datetime DEFAULT NULL COMMENT '成为会员时间',
   `vip_expire_time` datetime DEFAULT NULL COMMENT '会员到期时间',
-  `agent_role_id` bigint unsigned DEFAULT NULL COMMENT '代理身份ID',
-  `parent_inviter_id` bigint unsigned DEFAULT NULL COMMENT '父邀请人ID',
-  `child_inviter_id` bigint unsigned DEFAULT NULL COMMENT '子邀请人ID',
+  `agent_role_id` int DEFAULT NULL COMMENT '代理身份ID(同 region id）',
+  `parent_inviter_id` int DEFAULT NULL COMMENT '父邀请人ID',
+  `child_inviter_id` int DEFAULT NULL COMMENT '子邀请人ID',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户表';
@@ -1184,7 +1187,7 @@ CREATE TABLE `litemall_user` (
 
 LOCK TABLES `litemall_user` WRITE;
 /*!40000 ALTER TABLE `litemall_user` DISABLE KEYS */;
-INSERT INTO `litemall_user` VALUES (1,'user123','$2a$10$lTu9qi0hr19OC800Db.eludFr0AXuJUSrMHi/iPYhKRlPFeqJxlye',1,NULL,'2025-07-07 17:58:25','0:0:0:0:0:0:0:1',0,'user123','','','','',0,'2019-04-20 22:17:43','2025-07-07 17:58:25',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `litemall_user` VALUES (1,'user123','$2a$10$lTu9qi0hr19OC800Db.eludFr0AXuJUSrMHi/iPYhKRlPFeqJxlye',1,NULL,'2025-07-10 17:00:24','0:0:0:0:0:0:0:1',0,'user123','','','','',0,'2019-04-20 22:17:43','2025-07-10 19:32:23',0,0.00,NULL,NULL,NULL,0,NULL,NULL);
 /*!40000 ALTER TABLE `litemall_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1201,4 +1204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-08 14:21:11
+-- Dump completed on 2025-07-10 19:40:13

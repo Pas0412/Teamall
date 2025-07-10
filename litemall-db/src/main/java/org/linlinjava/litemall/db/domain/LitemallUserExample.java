@@ -3001,7 +3001,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdEqualTo(Long value) {
+        public Criteria andAgentRoleIdEqualTo(Integer value) {
             addCriterion("agent_role_id =", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -3017,7 +3017,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdNotEqualTo(Long value) {
+        public Criteria andAgentRoleIdNotEqualTo(Integer value) {
             addCriterion("agent_role_id <>", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -3033,7 +3033,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdGreaterThan(Long value) {
+        public Criteria andAgentRoleIdGreaterThan(Integer value) {
             addCriterion("agent_role_id >", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -3049,7 +3049,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andAgentRoleIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("agent_role_id >=", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -3065,7 +3065,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdLessThan(Long value) {
+        public Criteria andAgentRoleIdLessThan(Integer value) {
             addCriterion("agent_role_id <", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -3081,7 +3081,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdLessThanOrEqualTo(Long value) {
+        public Criteria andAgentRoleIdLessThanOrEqualTo(Integer value) {
             addCriterion("agent_role_id <=", value, "agentRoleId");
             return (Criteria) this;
         }
@@ -3097,22 +3097,22 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdIn(List<Long> values) {
+        public Criteria andAgentRoleIdIn(List<Integer> values) {
             addCriterion("agent_role_id in", values, "agentRoleId");
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdNotIn(List<Long> values) {
+        public Criteria andAgentRoleIdNotIn(List<Integer> values) {
             addCriterion("agent_role_id not in", values, "agentRoleId");
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdBetween(Long value1, Long value2) {
+        public Criteria andAgentRoleIdBetween(Integer value1, Integer value2) {
             addCriterion("agent_role_id between", value1, value2, "agentRoleId");
             return (Criteria) this;
         }
 
-        public Criteria andAgentRoleIdNotBetween(Long value1, Long value2) {
+        public Criteria andAgentRoleIdNotBetween(Integer value1, Integer value2) {
             addCriterion("agent_role_id not between", value1, value2, "agentRoleId");
             return (Criteria) this;
         }
@@ -3127,7 +3127,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andParentInviterIdEqualTo(Long value) {
+        public Criteria andParentInviterIdEqualTo(Integer value) {
             addCriterion("parent_inviter_id =", value, "parentInviterId");
             return (Criteria) this;
         }
@@ -3143,7 +3143,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andParentInviterIdNotEqualTo(Long value) {
+        public Criteria andParentInviterIdNotEqualTo(Integer value) {
             addCriterion("parent_inviter_id <>", value, "parentInviterId");
             return (Criteria) this;
         }
@@ -3159,7 +3159,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andParentInviterIdGreaterThan(Long value) {
+        public Criteria andParentInviterIdGreaterThan(Integer value) {
             addCriterion("parent_inviter_id >", value, "parentInviterId");
             return (Criteria) this;
         }
@@ -3175,7 +3175,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andParentInviterIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andParentInviterIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("parent_inviter_id >=", value, "parentInviterId");
             return (Criteria) this;
         }
@@ -3191,7 +3191,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andParentInviterIdLessThan(Long value) {
+        public Criteria andParentInviterIdLessThan(Integer value) {
             addCriterion("parent_inviter_id <", value, "parentInviterId");
             return (Criteria) this;
         }
@@ -3207,7 +3207,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andParentInviterIdLessThanOrEqualTo(Long value) {
+        public Criteria andParentInviterIdLessThanOrEqualTo(Integer value) {
             addCriterion("parent_inviter_id <=", value, "parentInviterId");
             return (Criteria) this;
         }
@@ -3223,22 +3223,22 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andParentInviterIdIn(List<Long> values) {
+        public Criteria andParentInviterIdIn(List<Integer> values) {
             addCriterion("parent_inviter_id in", values, "parentInviterId");
             return (Criteria) this;
         }
 
-        public Criteria andParentInviterIdNotIn(List<Long> values) {
+        public Criteria andParentInviterIdNotIn(List<Integer> values) {
             addCriterion("parent_inviter_id not in", values, "parentInviterId");
             return (Criteria) this;
         }
 
-        public Criteria andParentInviterIdBetween(Long value1, Long value2) {
+        public Criteria andParentInviterIdBetween(Integer value1, Integer value2) {
             addCriterion("parent_inviter_id between", value1, value2, "parentInviterId");
             return (Criteria) this;
         }
 
-        public Criteria andParentInviterIdNotBetween(Long value1, Long value2) {
+        public Criteria andParentInviterIdNotBetween(Integer value1, Integer value2) {
             addCriterion("parent_inviter_id not between", value1, value2, "parentInviterId");
             return (Criteria) this;
         }
@@ -3253,7 +3253,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andChildInviterIdEqualTo(Long value) {
+        public Criteria andChildInviterIdEqualTo(Integer value) {
             addCriterion("child_inviter_id =", value, "childInviterId");
             return (Criteria) this;
         }
@@ -3269,7 +3269,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andChildInviterIdNotEqualTo(Long value) {
+        public Criteria andChildInviterIdNotEqualTo(Integer value) {
             addCriterion("child_inviter_id <>", value, "childInviterId");
             return (Criteria) this;
         }
@@ -3285,7 +3285,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andChildInviterIdGreaterThan(Long value) {
+        public Criteria andChildInviterIdGreaterThan(Integer value) {
             addCriterion("child_inviter_id >", value, "childInviterId");
             return (Criteria) this;
         }
@@ -3301,7 +3301,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andChildInviterIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andChildInviterIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("child_inviter_id >=", value, "childInviterId");
             return (Criteria) this;
         }
@@ -3317,7 +3317,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andChildInviterIdLessThan(Long value) {
+        public Criteria andChildInviterIdLessThan(Integer value) {
             addCriterion("child_inviter_id <", value, "childInviterId");
             return (Criteria) this;
         }
@@ -3333,7 +3333,7 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andChildInviterIdLessThanOrEqualTo(Long value) {
+        public Criteria andChildInviterIdLessThanOrEqualTo(Integer value) {
             addCriterion("child_inviter_id <=", value, "childInviterId");
             return (Criteria) this;
         }
@@ -3349,22 +3349,22 @@ public class LitemallUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andChildInviterIdIn(List<Long> values) {
+        public Criteria andChildInviterIdIn(List<Integer> values) {
             addCriterion("child_inviter_id in", values, "childInviterId");
             return (Criteria) this;
         }
 
-        public Criteria andChildInviterIdNotIn(List<Long> values) {
+        public Criteria andChildInviterIdNotIn(List<Integer> values) {
             addCriterion("child_inviter_id not in", values, "childInviterId");
             return (Criteria) this;
         }
 
-        public Criteria andChildInviterIdBetween(Long value1, Long value2) {
+        public Criteria andChildInviterIdBetween(Integer value1, Integer value2) {
             addCriterion("child_inviter_id between", value1, value2, "childInviterId");
             return (Criteria) this;
         }
 
-        public Criteria andChildInviterIdNotBetween(Long value1, Long value2) {
+        public Criteria andChildInviterIdNotBetween(Integer value1, Integer value2) {
             addCriterion("child_inviter_id not between", value1, value2, "childInviterId");
             return (Criteria) this;
         }

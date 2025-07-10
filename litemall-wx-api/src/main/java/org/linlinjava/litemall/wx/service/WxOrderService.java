@@ -385,6 +385,7 @@ public class WxOrderService {
         order.setIntegralPrice(integralPrice);
         order.setOrderPrice(orderTotalPrice);
         order.setActualPrice(actualPrice);
+        order.setAgentRoleId(checkedAddress.getId());
 
         // 有团购
         if (grouponRules != null) {

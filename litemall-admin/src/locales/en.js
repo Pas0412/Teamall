@@ -17,6 +17,7 @@ export default {
       mall: 'Mall',
       mall_region: 'Regions',
       mall_brand: 'Brands',
+      mall_commission: 'Commissions',
       mall_category: 'Categories',
       mall_order: 'Orders',
       mall_aftersale: 'After-sales',

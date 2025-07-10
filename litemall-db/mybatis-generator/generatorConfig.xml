@@ -67,6 +67,9 @@
             <columnOverride column="role_ids" javaType="java.lang.Integer[]"
                             typeHandler="org.linlinjava.litemall.db.mybatis.JsonIntegerArrayTypeHandler"/>
         </table>
+        <table tableName="litemall_agent_commission_config">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
         <table tableName="litemall_brand">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>

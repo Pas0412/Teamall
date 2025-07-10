@@ -23,6 +23,13 @@
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="first_vip_time" jdbcType="TIMESTAMP" property="firstVipTime" />
+    <result column="become_vip_time" jdbcType="TIMESTAMP" property="becomeVipTime" />
+    <result column="vip_expire_time" jdbcType="TIMESTAMP" property="vipExpireTime" />
+    <result column="agent_role_id" jdbcType="BIGINT" property="agentRoleId" />
+    <result column="parent_inviter_id" jdbcType="BIGINT" property="parentInviterId" />
+    <result column="child_inviter_id" jdbcType="BIGINT" property="childInviterId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -97,7 +104,8 @@
     -->
     id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
     nickname, mobile, avatar, weixin_openid, session_key, `status`, add_time, update_time, 
-    deleted
+    deleted, balance, first_vip_time, become_vip_time, vip_expire_time, agent_role_id, 
+    parent_inviter_id, child_inviter_id
   </sql>
   <select id="selectByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallUserExample" resultMap="BaseResultMap">
     <!--
@@ -223,13 +231,17 @@
       user_level, nickname, mobile, 
       avatar, weixin_openid, session_key, 
       `status`, add_time, update_time, 
-      deleted)
+      deleted, balance, first_vip_time, 
+      become_vip_time, vip_expire_time, agent_role_id, 
+      parent_inviter_id, child_inviter_id)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
       #{birthday,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, 
       #{userLevel,jdbcType=TINYINT}, #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
       #{avatar,jdbcType=VARCHAR}, #{weixinOpenid,jdbcType=VARCHAR}, #{sessionKey,jdbcType=VARCHAR}, 
       #{status,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{deleted,jdbcType=BIT})
+      #{deleted,jdbcType=BIT}, #{balance,jdbcType=DECIMAL}, #{firstVipTime,jdbcType=TIMESTAMP}, 
+      #{becomeVipTime,jdbcType=TIMESTAMP}, #{vipExpireTime,jdbcType=TIMESTAMP}, #{agentRoleId,jdbcType=BIGINT}, 
+      #{parentInviterId,jdbcType=BIGINT}, #{childInviterId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="org.linlinjava.litemall.db.domain.LitemallUser">
     <!--
@@ -289,6 +301,27 @@
       <if test="deleted != null">
         deleted,
       </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="firstVipTime != null">
+        first_vip_time,
+      </if>
+      <if test="becomeVipTime != null">
+        become_vip_time,
+      </if>
+      <if test="vipExpireTime != null">
+        vip_expire_time,
+      </if>
+      <if test="agentRoleId != null">
+        agent_role_id,
+      </if>
+      <if test="parentInviterId != null">
+        parent_inviter_id,
+      </if>
+      <if test="childInviterId != null">
+        child_inviter_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="username != null">
@@ -338,6 +371,27 @@
       </if>
       <if test="deleted != null">
         #{deleted,jdbcType=BIT},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="firstVipTime != null">
+        #{firstVipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="becomeVipTime != null">
+        #{becomeVipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipExpireTime != null">
+        #{vipExpireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentRoleId != null">
+        #{agentRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="parentInviterId != null">
+        #{parentInviterId,jdbcType=BIGINT},
+      </if>
+      <if test="childInviterId != null">
+        #{childInviterId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -409,6 +463,27 @@
       <if test="record.deleted != null">
         deleted = #{record.deleted,jdbcType=BIT},
       </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.firstVipTime != null">
+        first_vip_time = #{record.firstVipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.becomeVipTime != null">
+        become_vip_time = #{record.becomeVipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.vipExpireTime != null">
+        vip_expire_time = #{record.vipExpireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.agentRoleId != null">
+        agent_role_id = #{record.agentRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.parentInviterId != null">
+        parent_inviter_id = #{record.parentInviterId,jdbcType=BIGINT},
+      </if>
+      <if test="record.childInviterId != null">
+        child_inviter_id = #{record.childInviterId,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -436,7 +511,14 @@
       `status` = #{record.status,jdbcType=TINYINT},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      deleted = #{record.deleted,jdbcType=BIT}
+      deleted = #{record.deleted,jdbcType=BIT},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      first_vip_time = #{record.firstVipTime,jdbcType=TIMESTAMP},
+      become_vip_time = #{record.becomeVipTime,jdbcType=TIMESTAMP},
+      vip_expire_time = #{record.vipExpireTime,jdbcType=TIMESTAMP},
+      agent_role_id = #{record.agentRoleId,jdbcType=BIGINT},
+      parent_inviter_id = #{record.parentInviterId,jdbcType=BIGINT},
+      child_inviter_id = #{record.childInviterId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -496,6 +578,27 @@
       <if test="deleted != null">
         deleted = #{deleted,jdbcType=BIT},
       </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="firstVipTime != null">
+        first_vip_time = #{firstVipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="becomeVipTime != null">
+        become_vip_time = #{becomeVipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipExpireTime != null">
+        vip_expire_time = #{vipExpireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentRoleId != null">
+        agent_role_id = #{agentRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="parentInviterId != null">
+        parent_inviter_id = #{parentInviterId,jdbcType=BIGINT},
+      </if>
+      <if test="childInviterId != null">
+        child_inviter_id = #{childInviterId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -520,7 +623,14 @@
       `status` = #{status,jdbcType=TINYINT},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      deleted = #{deleted,jdbcType=BIT}
+      deleted = #{deleted,jdbcType=BIT},
+      balance = #{balance,jdbcType=DECIMAL},
+      first_vip_time = #{firstVipTime,jdbcType=TIMESTAMP},
+      become_vip_time = #{becomeVipTime,jdbcType=TIMESTAMP},
+      vip_expire_time = #{vipExpireTime,jdbcType=TIMESTAMP},
+      agent_role_id = #{agentRoleId,jdbcType=BIGINT},
+      parent_inviter_id = #{parentInviterId,jdbcType=BIGINT},
+      child_inviter_id = #{childInviterId,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallUserExample" resultMap="BaseResultMap">

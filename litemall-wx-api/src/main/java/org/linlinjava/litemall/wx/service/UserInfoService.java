@@ -19,6 +19,7 @@ public class UserInfoService {
         UserInfo userInfo = new UserInfo();
         userInfo.setNickName(user.getNickname());
         userInfo.setAvatarUrl(user.getAvatar());
+        userInfo.setVipExpireTime(user.getVipExpireTime());
         return userInfo;
     }
 }

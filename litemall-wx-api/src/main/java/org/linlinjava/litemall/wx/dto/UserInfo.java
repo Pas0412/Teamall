@@ -1,5 +1,8 @@
 package org.linlinjava.litemall.wx.dto;
 
+
+import java.time.LocalDateTime;
+
 public class UserInfo {
     private String nickName;
     private String avatarUrl;
@@ -8,6 +11,13 @@ public class UserInfo {
     private String city;
     private String language;
     private Byte gender;
+    private LocalDateTime vipExpireTime;
+
+    public LocalDateTime getVipExpireTime(){ return vipExpireTime; }
+
+    public void setVipExpireTime(LocalDateTime vipExpireTime) {
+        this.vipExpireTime = vipExpireTime;
+    }
 
     public String getCountry() {
         return country;

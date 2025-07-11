@@ -97,6 +97,7 @@ public class WxAuthController {
         UserInfo userInfo = new UserInfo();
         userInfo.setNickName(username);
         userInfo.setAvatarUrl(user.getAvatar());
+        userInfo.setVipExpireTime(user.getVipExpireTime());
 
         // token
         String token = UserTokenManager.generateToken(user.getId());

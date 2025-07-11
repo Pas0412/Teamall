@@ -1,3 +1,4 @@
+var app = getApp();
 // pages/vip/vipHome/vipHome.js
 Page({
   data: {
@@ -5,19 +6,6 @@ Page({
   },
 
   onLoad() {
-    // 模拟当前时间 + 一年
-    const now = new Date();
-    const expire = new Date(now.setFullYear(now.getFullYear() + 1));
-    this.setData({
-      expireDate: this.formatDate(expire)
-    });
-  },
-
-  formatDate(date) {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
   },
 
   handleRenew() {
@@ -47,7 +35,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    //获取用户的登录信息
+    if (app.globalData.hasLogin) {
+      let userInfo = wx.getStorageSync('userInfo');
+      this.setData({
+        userInfo: userInfo,
+        hasLogin: true
+      });
+      this.setData({
+        expireDate: userInfo.vipExpireTime.substring(0,10)
+      })
+    }
   },
 
   /**

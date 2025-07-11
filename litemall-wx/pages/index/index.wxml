@@ -103,14 +103,14 @@
         </view> -->
         <view class="b">
             <view class="item item-1" wx:for="{{vipList}}" wx:key="id">
-                <navigator url="{{item.url}}">
+                <view bindtap="goVip" data-item="{{item.url}}">
                     <view class="wrap">
                         <image class="img" src="{{item.picUrl}}" mode="aspectFill"></image>
                         <view class="mt">
                             <text class="brand">{{item.name}}</text>
                         </view>
                     </view>
-                </navigator>
+                </view>
             </view>
         </view>
     </view>

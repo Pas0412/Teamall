@@ -1,6 +1,19 @@
 var api = require('../config/api.js');
 var app = getApp();
 
+function getCurrentDateTime() {
+  const now = new Date();
+
+  const year = now.getFullYear(); // 年份，如 2025
+  const month = String(now.getMonth() + 1).padStart(2, '0'); // 月份从0开始，所以+1
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -86,6 +99,7 @@ function showErrorToast(msg) {
 }
 
 module.exports = {
+  getCurrentDateTime,
   formatTime,
   request,
   redirect,

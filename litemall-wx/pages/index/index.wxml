@@ -127,7 +127,8 @@
                 <navigator url="../goods/goods?id={{item.id}}">
                     <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
                     <text class="name">{{item.name}}</text>
-                    <text class="price">￥{{item.retailPrice}}</text>
+                    <text wx:if="{{isVip}}" class="price">￥{{item.retailPrice}}</text>
+                    <text wx:else="{{!isVip}}" class="price">￥{{item.counterPrice}}</text>
                 </navigator>
             </view>
         </view>

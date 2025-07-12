@@ -145,7 +145,7 @@ Page({
             // 如果仅仅存在一种货品，那么商品价格应该和货品价格一致
             // 这里检测一下
             let _productPrice = res.data.productList[0].price;
-            let _goodsPrice = res.data.info.retailPrice;
+            let _goodsPrice = app.globalData.isVip? res.data.info.retailPrice : res.data.info.counterPrice;
             if (_productPrice != _goodsPrice) {
               console.error('商品数量价格和货品不一致');
             }
@@ -168,7 +168,7 @@ Page({
           productList: res.data.productList,
           userHasCollect: res.data.userHasCollect,
           shareImage: res.data.shareImage,
-          checkedSpecPrice: res.data.info.retailPrice,
+          checkedSpecPrice: app.globalData.isVip? res.data.info.retailPrice : res.data.info.counterPrice,
           groupon: res.data.groupon,
           canShare: res.data.share,
           //选择规格时，默认展示第一张图片
@@ -388,7 +388,7 @@ Page({
         });
       } else {
         this.setData({
-          checkedSpecPrice: this.data.goods.retailPrice,
+          checkedSpecPrice: app.globalData.isVip? this.data.goods.retailPrice : this.data.goods.counterPrice,
           soldout: true
         });
       }
@@ -396,7 +396,7 @@ Page({
     } else {
       this.setData({
         checkedSpecText: '规格数量选择',
-        checkedSpecPrice: this.data.goods.retailPrice,
+        checkedSpecPrice: app.globalData.isVip? this.data.goods.retailPrice : this.data.goods.counterPrice,
         soldout: false
       });
     }

@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.linlinjava.litemall.wx.util.WxResponseCode.GOODS_NO_STOCK;
@@ -45,6 +46,9 @@ public class WxCartController {
     private LitemallCouponUserService couponUserService;
     @Autowired
     private CouponVerifyService couponVerifyService;
+
+    @Autowired
+    private LitemallUserService userService;
 
     /**
      * 用户购物车信息
@@ -152,7 +156,17 @@ public class WxCartController {
             else{
                 cart.setPicUrl(product.getUrl());
             }
-            cart.setPrice(product.getPrice());
+            // 这个地方不应该是调用product表，应该根据是否是会员去拿goods表里的counterPrice或者retailPrice
+//            cart.setPrice(product.getPrice());
+            // 判断是否为会员
+            LitemallUser user = userService.findById(userId);
+            LocalDateTime now = LocalDateTime.now(); // 当前时间
+            if (now.isAfter(user.getVipExpireTime())) { // 判断是否超过过期时间
+                cart.setPrice(goods.getCounterPrice());
+            }
+            else {
+                cart.setPrice(goods.getRetailPrice());
+            }
             cart.setSpecifications(product.getSpecifications());
             cart.setUserId(userId);
             cart.setChecked(true);
@@ -226,7 +240,17 @@ public class WxCartController {
             else{
                 cart.setPicUrl(product.getUrl());
             }
-            cart.setPrice(product.getPrice());
+            // 这个地方不应该是调用product表，应该根据是否是会员去拿goods表里的counterPrice或者retailPrice
+//            cart.setPrice(product.getPrice());
+            // 判断是否为会员
+            LitemallUser user = userService.findById(userId);
+            LocalDateTime now = LocalDateTime.now(); // 当前时间
+            if (now.isAfter(user.getVipExpireTime())) { // 判断是否超过过期时间
+                cart.setPrice(goods.getCounterPrice());
+            }
+            else {
+                cart.setPrice(goods.getRetailPrice());
+            }
             cart.setSpecifications(product.getSpecifications());
             cart.setUserId(userId);
             cart.setChecked(true);

@@ -7,7 +7,7 @@ Page({
   data: {
     canIUseGetUserProfile: false,
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     // 页面渲染完成
     if (wx.getUserProfile) {
@@ -16,21 +16,21 @@ Page({
       })
     }
   },
-  onReady: function() {
+  onReady: function () {
 
   },
-  onShow: function() {
+  onShow: function () {
     // 页面显示
   },
-  onHide: function() {
+  onHide: function () {
     // 页面隐藏
 
   },
-  onUnload: function() {
+  onUnload: function () {
     // 页面关闭
 
   },
-  wxLogin: function(e) {
+  wxLogin: function (e) {
     if (this.data.canIUseGetUserProfile) {
       wx.getUserProfile({
         desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
@@ -51,7 +51,7 @@ Page({
       this.doLogin(e.detail.userInfo)
     }
   },
-  doLogin: function(userInfo) {
+  doLogin: function (userInfo) {
     user.checkLogin().catch(() => {
       user.loginByWeixin(userInfo).then(res => {
         app.globalData.hasLogin = true;
@@ -62,10 +62,9 @@ Page({
         app.globalData.hasLogin = false;
         util.showErrorToast('微信登录失败');
       });
-
     });
   },
-  accountLogin: function() {
+  accountLogin: function () {
     wx.navigateTo({
       url: "/pages/auth/accountLogin/accountLogin"
     });

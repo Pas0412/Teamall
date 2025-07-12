@@ -17,6 +17,7 @@ Page({
     channel: [],
     coupon: [],
     goodsCount: 0,
+    isVip: false,
     menuList: [
       {
         id: 1,
@@ -79,19 +80,13 @@ Page({
     //获取用户的登录信息
     if (app.globalData.hasLogin) {
       let userInfo = wx.getStorageSync('userInfo');
-
-      // 当前时间
-      const now = new Date();
-
-      // 将输入的时间字符串转换为 Date 对象
-      const targetTime = new Date(userInfo.vipExpireTime);
-
-      if (now > targetTime) {
+      console.log(app.globalData.isVip)
+      if (!app.globalData.isVip) {
         // 已过期
         wx.navigateTo({
           url: '/pages/vip/becomeVip/becomeVip'
         });
-      } else if (now < targetTime) {
+      } else if (app.globalData.isVip) {
         wx.navigateTo({
           url: '/pages/vip/vipHome/vipHome'
         });
@@ -191,6 +186,15 @@ Page({
   },
   onShow: function () {
     // 页面显示
+    if(app.globalData.isVip){
+      this.setData({
+        isVip: true
+      })
+    }else{
+      this.setData({
+        isVip: false
+      })
+    }
   },
   onHide: function () {
     // 页面隐藏

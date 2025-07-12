@@ -12,11 +12,18 @@ public class UserInfo {
     private String language;
     private Byte gender;
     private LocalDateTime vipExpireTime;
+    private Integer agentRoleId;
 
     public LocalDateTime getVipExpireTime(){ return vipExpireTime; }
 
     public void setVipExpireTime(LocalDateTime vipExpireTime) {
         this.vipExpireTime = vipExpireTime;
+    }
+
+    public Integer getAgentRoleId(){ return agentRoleId; }
+
+    public void setAgentRoleId(Integer agentRoleId) {
+        this.agentRoleId = agentRoleId;
     }
 
     public String getCountry() {

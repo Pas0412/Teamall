@@ -1,14 +1,14 @@
+var util = require('../../../utils/util.js');
+var api = require('../../../config/api.js');
+var user = require('../../../utils/user.js');
+var app = getApp();
 Page({
   data: {
-    currentBalance: 1580.50,
+    currentBalance: 0.00,
     lastUpdated: '2023-07-05 14:30',
-    transactions: [
-      { id: 1, type: '充值', date: '07-05', amount: 500 },
-      { id: 2, type: '转账支出', date: '07-04', amount: -300 },
-      { id: 3, type: '工资收入', date: '07-03', amount: 2000 },
-      { id: 4, type: '提现', date: '07-02', amount: -500 },
-      { id: 5, type: '消费', date: '07-01', amount: -120 }
-    ]
+    teamAmount: 0.00,
+    agentAmount: 0.00,
+    isAgent: false
   },
 
   onRecharge() {
@@ -40,6 +40,36 @@ Page({
     });
   },
 
+  showData() {
+    //获取用户的登录信息
+    if (app.globalData.hasLogin) {
+      let userInfo = wx.getStorageSync('userInfo');
+      this.setData({
+        userInfo: userInfo,
+        hasLogin: true
+      });
+      this.setData({
+        lastUpdated: util.getCurrentDateTime(),
+        isAgent: userInfo.agentRoleId == 0? false : true
+      })
+
+      let that = this;
+      util.request(api.GetBalance).then(function(res) {
+        if (res.errno === 0) {
+          that.setData({
+            currentBalance: res.data.balance,
+            teamAmount: res.data.teamAmount,
+            agentAmount: res.data.agentAmount
+          });
+        }
+      });
+    }
+  },
+
+  onRefresh() {
+    this.showData();
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -58,7 +88,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.showData();
   },
 
   /**

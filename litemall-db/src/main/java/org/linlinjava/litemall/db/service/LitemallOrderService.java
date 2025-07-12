@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,6 +35,32 @@ public class LitemallOrderService {
         LitemallOrderExample example = new LitemallOrderExample();
         example.or().andUserIdEqualTo(userId).andDeletedEqualTo(false);
         return (int) litemallOrderMapper.countByExample(example);
+    }
+
+    public BigDecimal getTeamAmount(Integer userId) {
+        LitemallOrderExample example = new LitemallOrderExample();
+        example.createCriteria()
+                .andUserIdEqualTo(userId)
+                .andEndTimeIsNotNull();
+
+        List<LitemallOrder> orders = litemallOrderMapper.selectByExample(example);
+
+        return orders.stream()
+                .map(order -> order.getActualPrice().subtract(order.getRefundAmount()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getAgentAmount(Integer agentRoleId) {
+        LitemallOrderExample example = new LitemallOrderExample();
+        example.createCriteria()
+                .andAgentRoleIdEqualTo(agentRoleId)
+                .andEndTimeIsNotNull();
+
+        List<LitemallOrder> orders = litemallOrderMapper.selectByExample(example);
+
+        return orders.stream()
+                .map(order -> order.getActualPrice().subtract(order.getRefundAmount()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public LitemallOrder findById(Integer orderId) {

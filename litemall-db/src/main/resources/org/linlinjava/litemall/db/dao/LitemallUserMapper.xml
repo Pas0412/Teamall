@@ -29,7 +29,6 @@
     <result column="vip_expire_time" jdbcType="TIMESTAMP" property="vipExpireTime" />
     <result column="agent_role_id" jdbcType="INTEGER" property="agentRoleId" />
     <result column="parent_inviter_id" jdbcType="INTEGER" property="parentInviterId" />
-    <result column="child_inviter_id" jdbcType="INTEGER" property="childInviterId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -105,7 +104,7 @@
     id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
     nickname, mobile, avatar, weixin_openid, session_key, `status`, add_time, update_time, 
     deleted, balance, first_vip_time, become_vip_time, vip_expire_time, agent_role_id, 
-    parent_inviter_id, child_inviter_id
+    parent_inviter_id
   </sql>
   <select id="selectByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallUserExample" resultMap="BaseResultMap">
     <!--
@@ -233,7 +232,7 @@
       `status`, add_time, update_time, 
       deleted, balance, first_vip_time, 
       become_vip_time, vip_expire_time, agent_role_id, 
-      parent_inviter_id, child_inviter_id)
+      parent_inviter_id)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
       #{birthday,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, 
       #{userLevel,jdbcType=TINYINT}, #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
@@ -241,7 +240,7 @@
       #{status,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{deleted,jdbcType=BIT}, #{balance,jdbcType=DECIMAL}, #{firstVipTime,jdbcType=TIMESTAMP}, 
       #{becomeVipTime,jdbcType=TIMESTAMP}, #{vipExpireTime,jdbcType=TIMESTAMP}, #{agentRoleId,jdbcType=INTEGER}, 
-      #{parentInviterId,jdbcType=INTEGER}, #{childInviterId,jdbcType=INTEGER})
+      #{parentInviterId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="org.linlinjava.litemall.db.domain.LitemallUser">
     <!--
@@ -319,9 +318,6 @@
       <if test="parentInviterId != null">
         parent_inviter_id,
       </if>
-      <if test="childInviterId != null">
-        child_inviter_id,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="username != null">
@@ -389,9 +385,6 @@
       </if>
       <if test="parentInviterId != null">
         #{parentInviterId,jdbcType=INTEGER},
-      </if>
-      <if test="childInviterId != null">
-        #{childInviterId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -481,9 +474,6 @@
       <if test="record.parentInviterId != null">
         parent_inviter_id = #{record.parentInviterId,jdbcType=INTEGER},
       </if>
-      <if test="record.childInviterId != null">
-        child_inviter_id = #{record.childInviterId,jdbcType=INTEGER},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -517,8 +507,7 @@
       become_vip_time = #{record.becomeVipTime,jdbcType=TIMESTAMP},
       vip_expire_time = #{record.vipExpireTime,jdbcType=TIMESTAMP},
       agent_role_id = #{record.agentRoleId,jdbcType=INTEGER},
-      parent_inviter_id = #{record.parentInviterId,jdbcType=INTEGER},
-      child_inviter_id = #{record.childInviterId,jdbcType=INTEGER}
+      parent_inviter_id = #{record.parentInviterId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -596,9 +585,6 @@
       <if test="parentInviterId != null">
         parent_inviter_id = #{parentInviterId,jdbcType=INTEGER},
       </if>
-      <if test="childInviterId != null">
-        child_inviter_id = #{childInviterId,jdbcType=INTEGER},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -629,8 +615,7 @@
       become_vip_time = #{becomeVipTime,jdbcType=TIMESTAMP},
       vip_expire_time = #{vipExpireTime,jdbcType=TIMESTAMP},
       agent_role_id = #{agentRoleId,jdbcType=INTEGER},
-      parent_inviter_id = #{parentInviterId,jdbcType=INTEGER},
-      child_inviter_id = #{childInviterId,jdbcType=INTEGER}
+      parent_inviter_id = #{parentInviterId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallUserExample" resultMap="BaseResultMap">

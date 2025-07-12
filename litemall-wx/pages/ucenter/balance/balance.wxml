@@ -8,14 +8,25 @@
     <view class="balance-update-time">更新时间：{{lastUpdated}}</view>
   </view>
 
-  <!-- 快捷操作按钮 -->
-  <view class="quick-actions">
-    <button class="action-btn recharge" bindtap="onRecharge">充值</button>
-    <button class="action-btn transfer" bindtap="onTransfer">转账</button>
-    <button class="action-btn withdraw" bindtap="onWithdraw">提现</button>
+  <view class="balance-card">
+    <text class="balance-title">团队销售额</text>
+    <text class="balance-amount">¥{{teamAmount}}</text>
+    <view class="balance-update-time">更新时间：{{lastUpdated}}</view>
   </view>
 
-  <!-- 交易记录 -->
+  <view wx:if="{{isAgent}}" class="balance-card">
+    <text class="balance-title">代理总额</text>
+    <text class="balance-amount">¥{{agentAmount}}</text>
+    <view class="balance-update-time">更新时间：{{lastUpdated}}</view>
+  </view>
+
+<!-- 快捷操作按钮 -->
+  <view class="quick-actions">
+    <button class="action-btn recharge" bindtap="onRecharge">充值</button>
+    <button class="action-btn transfer" bindtap="onRefresh">刷新</button>
+    <button class="action-btn withdraw" bindtap="onWithdraw">提现</button>
+  </view>
+  <!-- 交易记录
   <view class="transaction-history">
     <text class="history-title">最近交易记录</text>
     <block wx:for="{{transactions}}" wx:key="id">
@@ -29,11 +40,11 @@
         </text>
       </view>
     </block>
-  </view>
+  </view> -->
 
   <!-- 底部操作 -->
-  <view class="bottom-actions">
+  <!-- <view class="bottom-actions">
     <button class="btn detail" bindtap="showDetails">查看详情</button>
     <button class="btn contact" bindtap="contactSupport">联系客服</button>
-  </view>
+  </view> -->
 </view>

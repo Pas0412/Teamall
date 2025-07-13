@@ -117,6 +117,19 @@ Page({
       });
     };
   },
+
+  goInvite() {
+    if (this.data.hasLogin) {
+      wx.navigateTo({
+        url: "/pages/ucenter/qrCode/qrCode"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    };
+  },
+
   goGroupon() {
     if (this.data.hasLogin) {
       wx.navigateTo({

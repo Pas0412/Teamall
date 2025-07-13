@@ -13,7 +13,22 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     // 页面渲染完成
+    let inviterUserId = null;
 
+    if (options.scene) {
+      inviterUserId = decodeURIComponent(options.scene); // 解析出推荐人ID
+      wx.setStorageSync('parentInviterId', inviterUserId);
+      console.log('扫码识别的推荐人ID:', inviterUserId);
+    }else{
+      wx.setStorageSync('parentInviterId', 0);
+      console.log('无邀请人');
+    }
+
+    // 判断是否已登录
+    const token = wx.getStorageSync('token');
+    if (token) {
+      this.jumpToHome();
+    }
   },
   onReady: function () {
 
@@ -31,6 +46,7 @@ Page({
   },
   accountLogin: function () {
     var that = this;
+    const parentInviterId = wx.getStorageSync('parentInviterId');
 
     if (this.data.password.length < 1 || this.data.username.length < 1) {
       wx.showModal({
@@ -45,7 +61,8 @@ Page({
       url: api.AuthLoginByAccount,
       data: {
         username: that.data.username,
-        password: that.data.password
+        password: that.data.password,
+        parentInviterId: parentInviterId
       },
       method: 'POST',
       header: {

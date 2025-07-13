@@ -1,6 +1,8 @@
 package org.linlinjava.litemall.wx.dto;
 
 
+import io.swagger.models.auth.In;
+
 import java.time.LocalDateTime;
 
 public class UserInfo {
@@ -13,6 +15,20 @@ public class UserInfo {
     private Byte gender;
     private LocalDateTime vipExpireTime;
     private Integer agentRoleId;
+    private Integer userId;
+    private Integer parentInviterId;
+
+    public Integer getParentInviterId(){ return parentInviterId; }
+
+    public void setParentInviterId(Integer parentInviterId) {
+        this.parentInviterId = parentInviterId;
+    }
+
+    public Integer getUserId(){ return userId; }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public LocalDateTime getVipExpireTime(){ return vipExpireTime; }
 

@@ -99,6 +99,7 @@ public class WxAuthController {
         userInfo.setAvatarUrl(user.getAvatar());
         userInfo.setVipExpireTime(user.getVipExpireTime());
         userInfo.setAgentRoleId(user.getAgentRoleId());
+        userInfo.setUserId(user.getId());
 
         // token
         String token = UserTokenManager.generateToken(user.getId());
@@ -152,6 +153,7 @@ public class WxAuthController {
             user.setLastLoginTime(LocalDateTime.now());
             user.setLastLoginIp(IpUtil.getIpAddr(request));
             user.setSessionKey(sessionKey);
+            user.setParentInviterId(userInfo.getParentInviterId());
 
             userService.add(user);
 
@@ -240,6 +242,7 @@ public class WxAuthController {
         String password = JacksonUtil.parseString(body, "password");
         String mobile = JacksonUtil.parseString(body, "mobile");
         String code = JacksonUtil.parseString(body, "code");
+        String parentInviterId = JacksonUtil.parseString(body, "parentInviterId");
         // 如果是小程序注册，则必须非空
         // 其他情况，可以为空
         String wxCode = JacksonUtil.parseString(body, "wxCode");
@@ -307,6 +310,9 @@ public class WxAuthController {
         user.setStatus((byte) 0);
         user.setLastLoginTime(LocalDateTime.now());
         user.setLastLoginIp(IpUtil.getIpAddr(request));
+        if (parentInviterId != null) {
+            user.setParentInviterId(Integer.valueOf(parentInviterId));
+        }
         userService.add(user);
 
         // 给新用户发送注册优惠券
@@ -316,6 +322,9 @@ public class WxAuthController {
         UserInfo userInfo = new UserInfo();
         userInfo.setNickName(username);
         userInfo.setAvatarUrl(user.getAvatar());
+        userInfo.setVipExpireTime(user.getVipExpireTime());
+        userInfo.setAgentRoleId(user.getAgentRoleId());
+        userInfo.setUserId(user.getId());
 
         // token
         String token = UserTokenManager.generateToken(user.getId());

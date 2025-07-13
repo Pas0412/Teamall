@@ -61,10 +61,10 @@
       <image class='user_column_item_image' src='/static/images/footprint.png'></image>
       <view class='user_column_item_text'>浏览足迹</view>
     </view>
-    <!-- <view class='user_column_item' bindtap='goGroupon'>
+    <view class='user_column_item' bindtap='goInvite'>
       <image class='user_column_item_image' src='/static/images/group.png'></image>
-      <view class='user_column_item_text'>我的拼团</view>
-    </view> -->
+      <view class='user_column_item_text'>邀请加入</view>
+    </view>
 
     <view class='user_column_item' bindtap='goAddress'>
       <image class='user_column_item_image' src='/static/images/address.png'></image>

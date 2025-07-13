@@ -1,0 +1,4 @@
+<!--pages/ucenter/qrCode/qrCode.wxml-->
+<text>pages/ucenter/qrCode/qrCode.wxml</text><view class="container">
+  <image wx:if="{{qrcodeUrl}}" src="{{qrcodeUrl}}" mode="aspectFit" class="qrcode"></image>
+</view>

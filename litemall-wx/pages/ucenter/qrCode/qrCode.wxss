@@ -1,0 +1,10 @@
+/* pages/ucenter/qrCode/qrCode.wxss */
+.container {
+  padding: 20rpx;
+}
+
+.qrcode {
+  width: 400rpx;
+  height: 400rpx;
+  margin-top: 40rpx;
+}

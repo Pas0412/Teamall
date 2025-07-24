@@ -16,10 +16,15 @@ Page({
     let inviterUserId = null;
 
     if (options.scene) {
-      inviterUserId = decodeURIComponent(options.scene); // 解析出推荐人ID
+      let scene = decodeURIComponent(options.scene); // 解析出推荐人ID
+      // 第一步：按 "=" 分割
+      let parts = scene.split("="); // ["inviterId", "8888-abc123"]
+
+      // 第二步：取第二部分，再按 "-" 分割
+      inviterUserId = parts[1].split("-")[0]; // "8888"
       wx.setStorageSync('parentInviterId', inviterUserId);
       console.log('扫码识别的推荐人ID:', inviterUserId);
-    }else{
+    } else {
       wx.setStorageSync('parentInviterId', 0);
       console.log('无邀请人');
     }

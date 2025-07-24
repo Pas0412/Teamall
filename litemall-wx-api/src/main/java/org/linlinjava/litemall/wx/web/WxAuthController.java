@@ -3,6 +3,8 @@ package org.linlinjava.litemall.wx.web;
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.notify.NotifyService;
@@ -23,15 +25,17 @@ import org.linlinjava.litemall.wx.service.CaptchaCodeManager;
 import org.linlinjava.litemall.wx.service.UserTokenManager;
 import org.linlinjava.litemall.core.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.linlinjava.litemall.wx.util.WxResponseCode.*;
 
@@ -167,6 +171,8 @@ public class WxAuthController {
                 return ResponseUtil.updatedDataFailed();
             }
         }
+
+        userInfo.setUserId(user.getId());
 
         // token
         String token = UserTokenManager.generateToken(user.getId());
@@ -566,5 +572,70 @@ public class WxAuthController {
         data.put("mobile", user.getMobile());
 
         return ResponseUtil.ok(data);
+    }
+
+    // 微信获取 access_token 的接口地址
+    String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token";
+    String QRCODE_URL = "https://api.weixin.qq.com/wxa/getwxacodeunlimit";
+
+
+    // 改为使用 @Value 注入：
+    @Value("${litemall.wx.app-id}")
+    private String appId;
+
+    @Value("${litemall.wx.app-secret}")
+    private String appSecret;
+
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @GetMapping("getQRCode")
+    public Object getQRCode(@RequestParam String inviterId) throws Exception {
+        // 1. 获取 access_token
+        String accessToken = getAccessToken();
+
+        // 2. 生成小程序码
+        byte[] qrCodeBytes = generateWxaCode(inviterId, accessToken);
+
+        // 3. 返回 base64 编码的图片数据
+        return ResponseUtil.ok("data:image/png;base64," + Base64.getEncoder().encodeToString(qrCodeBytes));
+    }
+
+    /**
+     * 获取 access_token
+     */
+    private String getAccessToken() throws Exception {
+        Map<String, String> params = new HashMap<>();
+        params.put("grant_type", "client_credential");
+        params.put("appid", appId);
+        params.put("secret", appSecret);
+
+        String url = ACCESS_TOKEN_URL + "?grant_type={grant_type}&appid={appid}&secret={secret}";
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class, params);
+
+        JsonNode jsonNode = objectMapper.readTree(response.getBody());
+        if (jsonNode.has("access_token")) {
+            return jsonNode.get("access_token").asText();
+        } else {
+            throw new RuntimeException("获取 access_token 失败：" + response.getBody());
+        }
+    }
+
+    /**
+     * 生成小程序码
+     */
+    private byte[] generateWxaCode(String inviterId, String accessToken) throws Exception {
+        String url = QRCODE_URL + "?access_token=" + accessToken;
+        String scene = "inviterId=" + inviterId + "-" + UUID.randomUUID().toString().substring(0, 8);
+        scene = scene.substring(0, Math.min(32, scene.length())); // 限制最多 32 字符
+
+        String requestBody = String.format(
+                "{ \"scene\": \"%s\", \"page\": \"pages/index/index\", \"width\": 430, \"auto_color\": true }",
+                scene
+        );
+        System.out.println(scene);
+
+        ResponseEntity<byte[]> response = restTemplate.postForEntity(url, requestBody, byte[].class);
+        return response.getBody();
     }
 }

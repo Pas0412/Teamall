@@ -1,4 +1,4 @@
 <!--pages/ucenter/qrCode/qrCode.wxml-->
-<text>pages/ucenter/qrCode/qrCode.wxml</text><view class="container">
+<text>扫描下方二维码邀请加入</text><view class="container">
   <image wx:if="{{qrcodeUrl}}" src="{{qrcodeUrl}}" mode="aspectFit" class="qrcode"></image>
 </view>

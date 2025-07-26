@@ -107,6 +107,8 @@ public class WxOrderService {
     private TaskService taskService;
     @Autowired
     private LitemallAftersaleService aftersaleService;
+    @Autowired
+    LitemallAgentCommissionConfigService agentCommissionConfigService;
 
     /**
      * 订单列表
@@ -386,6 +388,25 @@ public class WxOrderService {
         order.setOrderPrice(orderTotalPrice);
         order.setActualPrice(actualPrice);
         order.setAgentRoleId(checkedAddress.getId());
+        // 获取订单抽成比例
+        LitemallAgentCommissionConfig teamAgentCommissionConfig = agentCommissionConfigService.queryByKey("rebuy_under_direct");
+        BigDecimal teamAgentCommission = teamAgentCommissionConfig.getConfigValue();
+        order.setTeamCommission(actualPrice.multiply(teamAgentCommission));
+
+        // 获取省代佣金
+        LitemallAgentCommissionConfig provinceAgentCommissionConfig = agentCommissionConfigService.queryByKey("province_agent");
+        BigDecimal provinceAgentCommission = provinceAgentCommissionConfig.getConfigValue();
+        order.setProvinceCommission(actualPrice.multiply(provinceAgentCommission));
+
+        // 获取市代佣金
+        LitemallAgentCommissionConfig cityAgentCommissionConfig = agentCommissionConfigService.queryByKey("city_agent");
+        BigDecimal cityAgentCommission = cityAgentCommissionConfig.getConfigValue();
+        order.setCityCommission(actualPrice.multiply(cityAgentCommission));
+
+        // 获取区代佣金
+        LitemallAgentCommissionConfig countyAgentCommissionConfig = agentCommissionConfigService.queryByKey("county_agent");
+        BigDecimal countyAgentCommission = countyAgentCommissionConfig.getConfigValue();
+        order.setCountyCommission(actualPrice.multiply(countyAgentCommission));
 
         // 有团购
         if (grouponRules != null) {

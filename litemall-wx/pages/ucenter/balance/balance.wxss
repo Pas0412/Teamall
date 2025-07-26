@@ -7,7 +7,7 @@
 }
 
 .balance-card {
-  background-color: #4A90E2;
+  background-color: lightgrey;
   color: white;
   padding: 60rpx 40rpx;
   border-radius: 16rpx;
@@ -130,4 +130,13 @@
   color: #4A90E2;
   border: 2rpx solid #4A90E2;
   background-color: transparent;
+}
+
+/* 卡片行布局 */
+.balance-card-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
 }

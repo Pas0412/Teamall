@@ -50,6 +50,58 @@ public class LitemallOrderService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
+    public BigDecimal getTeamCommissionAmount(Integer userId) {
+        LitemallOrderExample example = new LitemallOrderExample();
+        example.createCriteria()
+                .andUserIdEqualTo(userId)
+                .andEndTimeIsNotNull();
+
+        List<LitemallOrder> orders = litemallOrderMapper.selectByExample(example);
+
+        return orders.stream()
+                .map(LitemallOrder::getTeamCommission)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getProvinceCommissionAmount(Integer agentRoleId) {
+        LitemallOrderExample example = new LitemallOrderExample();
+        example.createCriteria()
+                .andAgentRoleIdEqualTo(agentRoleId)
+                .andEndTimeIsNotNull();
+
+        List<LitemallOrder> orders = litemallOrderMapper.selectByExample(example);
+
+        return orders.stream()
+                .map(LitemallOrder::getProvinceCommission)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getCityCommissionAmount(Integer agentRoleId) {
+        LitemallOrderExample example = new LitemallOrderExample();
+        example.createCriteria()
+                .andAgentRoleIdEqualTo(agentRoleId)
+                .andEndTimeIsNotNull();
+
+        List<LitemallOrder> orders = litemallOrderMapper.selectByExample(example);
+
+        return orders.stream()
+                .map(LitemallOrder::getCityCommission)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getCountyCommissionAmount(Integer agentRoleId) {
+        LitemallOrderExample example = new LitemallOrderExample();
+        example.createCriteria()
+                .andAgentRoleIdEqualTo(agentRoleId)
+                .andEndTimeIsNotNull();
+
+        List<LitemallOrder> orders = litemallOrderMapper.selectByExample(example);
+
+        return orders.stream()
+                .map(LitemallOrder::getCountyCommission)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
     public BigDecimal getAgentAmount(Integer agentRoleId) {
         LitemallOrderExample example = new LitemallOrderExample();
         example.createCriteria()

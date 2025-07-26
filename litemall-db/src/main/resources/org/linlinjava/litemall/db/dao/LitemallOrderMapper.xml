@@ -38,6 +38,10 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
     <result column="agent_role_id" jdbcType="INTEGER" property="agentRoleId" />
+    <result column="team_commission" jdbcType="DECIMAL" property="teamCommission" />
+    <result column="province_commission" jdbcType="DECIMAL" property="provinceCommission" />
+    <result column="city_commission" jdbcType="DECIMAL" property="cityCommission" />
+    <result column="county_commission" jdbcType="DECIMAL" property="countyCommission" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -114,7 +118,8 @@
     message, goods_price, freight_price, coupon_price, integral_price, groupon_price, 
     order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, refund_amount, 
     refund_type, refund_content, refund_time, confirm_time, comments, end_time, add_time, 
-    update_time, deleted, agent_role_id
+    update_time, deleted, agent_role_id, team_commission, province_commission, city_commission, 
+    county_commission
   </sql>
   <select id="selectByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallOrderExample" resultMap="BaseResultMap">
     <!--
@@ -245,7 +250,8 @@
       refund_type, refund_content, refund_time, 
       confirm_time, comments, end_time, 
       add_time, update_time, deleted, 
-      agent_role_id)
+      agent_role_id, team_commission, province_commission, 
+      city_commission, county_commission)
     values (#{userId,jdbcType=INTEGER}, #{orderSn,jdbcType=VARCHAR}, #{orderStatus,jdbcType=SMALLINT}, 
       #{aftersaleStatus,jdbcType=SMALLINT}, #{consignee,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DECIMAL}, 
@@ -256,7 +262,8 @@
       #{refundType,jdbcType=VARCHAR}, #{refundContent,jdbcType=VARCHAR}, #{refundTime,jdbcType=TIMESTAMP}, 
       #{confirmTime,jdbcType=TIMESTAMP}, #{comments,jdbcType=SMALLINT}, #{endTime,jdbcType=TIMESTAMP}, 
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, 
-      #{agentRoleId,jdbcType=INTEGER})
+      #{agentRoleId,jdbcType=INTEGER}, #{teamCommission,jdbcType=DECIMAL}, #{provinceCommission,jdbcType=DECIMAL}, 
+      #{cityCommission,jdbcType=DECIMAL}, #{countyCommission,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="org.linlinjava.litemall.db.domain.LitemallOrder">
     <!--
@@ -361,6 +368,18 @@
       <if test="agentRoleId != null">
         agent_role_id,
       </if>
+      <if test="teamCommission != null">
+        team_commission,
+      </if>
+      <if test="provinceCommission != null">
+        province_commission,
+      </if>
+      <if test="cityCommission != null">
+        city_commission,
+      </if>
+      <if test="countyCommission != null">
+        county_commission,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -455,6 +474,18 @@
       </if>
       <if test="agentRoleId != null">
         #{agentRoleId,jdbcType=INTEGER},
+      </if>
+      <if test="teamCommission != null">
+        #{teamCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="provinceCommission != null">
+        #{provinceCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="cityCommission != null">
+        #{cityCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="countyCommission != null">
+        #{countyCommission,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -571,6 +602,18 @@
       <if test="record.agentRoleId != null">
         agent_role_id = #{record.agentRoleId,jdbcType=INTEGER},
       </if>
+      <if test="record.teamCommission != null">
+        team_commission = #{record.teamCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="record.provinceCommission != null">
+        province_commission = #{record.provinceCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cityCommission != null">
+        city_commission = #{record.cityCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="record.countyCommission != null">
+        county_commission = #{record.countyCommission,jdbcType=DECIMAL},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -613,7 +656,11 @@
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=BIT},
-      agent_role_id = #{record.agentRoleId,jdbcType=INTEGER}
+      agent_role_id = #{record.agentRoleId,jdbcType=INTEGER},
+      team_commission = #{record.teamCommission,jdbcType=DECIMAL},
+      province_commission = #{record.provinceCommission,jdbcType=DECIMAL},
+      city_commission = #{record.cityCommission,jdbcType=DECIMAL},
+      county_commission = #{record.countyCommission,jdbcType=DECIMAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -718,6 +765,18 @@
       <if test="agentRoleId != null">
         agent_role_id = #{agentRoleId,jdbcType=INTEGER},
       </if>
+      <if test="teamCommission != null">
+        team_commission = #{teamCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="provinceCommission != null">
+        province_commission = #{provinceCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="cityCommission != null">
+        city_commission = #{cityCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="countyCommission != null">
+        county_commission = #{countyCommission,jdbcType=DECIMAL},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -757,7 +816,11 @@
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT},
-      agent_role_id = #{agentRoleId,jdbcType=INTEGER}
+      agent_role_id = #{agentRoleId,jdbcType=INTEGER},
+      team_commission = #{teamCommission,jdbcType=DECIMAL},
+      province_commission = #{provinceCommission,jdbcType=DECIMAL},
+      city_commission = #{cityCommission,jdbcType=DECIMAL},
+      county_commission = #{countyCommission,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallOrderExample" resultMap="BaseResultMap">

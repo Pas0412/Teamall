@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 9.3.0, for macos15 (arm64)
 --
 -- Host: localhost    Database: litemall
 -- ------------------------------------------------------
--- Server version	8.0.42
+-- Server version	9.3.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -413,7 +413,7 @@ CREATE TABLE `litemall_coupon_user` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='优惠券用户使用表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='优惠券用户使用表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -422,6 +422,7 @@ CREATE TABLE `litemall_coupon_user` (
 
 LOCK TABLES `litemall_coupon_user` WRITE;
 /*!40000 ALTER TABLE `litemall_coupon_user` DISABLE KEYS */;
+INSERT INTO `litemall_coupon_user` VALUES (3,3,3,0,NULL,'2025-07-25 16:30:56','2025-08-04 16:30:56',NULL,'2025-07-25 16:30:56','2025-07-25 16:30:56',0);
 /*!40000 ALTER TABLE `litemall_coupon_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -884,6 +885,10 @@ CREATE TABLE `litemall_order` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   `agent_role_id` int DEFAULT NULL COMMENT '代理身份ID',
+  `team_commission` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '当前订单根据当下的抽成比例产生的佣金额',
+  `province_commission` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '当前订单根据当下的抽成比例产生的省代的佣金额',
+  `city_commission` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '当前订单根据当下的抽成比例产生的时代的佣金额',
+  `county_commission` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '当前订单根据当下的抽成比例产生的区代的佣金额',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='订单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1177,7 +1182,7 @@ CREATE TABLE `litemall_user` (
   `parent_inviter_id` int DEFAULT NULL COMMENT '父邀请人ID',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1186,7 +1191,7 @@ CREATE TABLE `litemall_user` (
 
 LOCK TABLES `litemall_user` WRITE;
 /*!40000 ALTER TABLE `litemall_user` DISABLE KEYS */;
-INSERT INTO `litemall_user` VALUES (1,'user123','$2a$10$lTu9qi0hr19OC800Db.eludFr0AXuJUSrMHi/iPYhKRlPFeqJxlye',1,NULL,'2025-07-13 01:34:44','0:0:0:0:0:0:0:1',0,'user123','','','','',0,'2019-04-20 22:17:43','2025-07-13 01:34:44',0,0.00,NULL,NULL,'2025-07-10 19:32:23',0,NULL);
+INSERT INTO `litemall_user` VALUES (1,'user123','$2a$10$lTu9qi0hr19OC800Db.eludFr0AXuJUSrMHi/iPYhKRlPFeqJxlye',1,NULL,'2025-07-13 01:34:44','0:0:0:0:0:0:0:1',0,'user123','','','','',0,'2019-04-20 22:17:43','2025-07-13 01:34:44',0,0.00,NULL,NULL,'2025-07-10 19:32:23',0,NULL),(3,'oxjpGviMwXunCyUJ1PWTDjdQPqvE','oxjpGviMwXunCyUJ1PWTDjdQPqvE',0,NULL,'2025-07-25 16:30:56','0:0:0:0:0:0:0:1',0,'微信用户','','https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132','oxjpGviMwXunCyUJ1PWTDjdQPqvE','rWoct8SgrMKWffsLgPrjkA==',0,'2025-07-25 16:30:56','2025-07-25 16:30:56',0,NULL,NULL,NULL,NULL,0,0);
 /*!40000 ALTER TABLE `litemall_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1203,4 +1208,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-13  1:38:56
+-- Dump completed on 2025-07-26  9:01:15

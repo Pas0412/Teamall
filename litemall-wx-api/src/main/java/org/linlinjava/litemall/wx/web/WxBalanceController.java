@@ -3,7 +3,9 @@ package org.linlinjava.litemall.wx.web;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.util.ResponseUtil;
+import org.linlinjava.litemall.db.domain.LitemallAgentCommissionConfig;
 import org.linlinjava.litemall.db.domain.LitemallUser;
+import org.linlinjava.litemall.db.service.LitemallAgentCommissionConfigService;
 import org.linlinjava.litemall.db.service.LitemallOrderService;
 import org.linlinjava.litemall.db.service.LitemallUserService;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
@@ -33,6 +35,9 @@ public class WxBalanceController {
     @Autowired
     private LitemallUserService userService;
 
+    @Autowired
+    private LitemallAgentCommissionConfigService agentCommissionConfigService;
+
 
     /**
      * 余额流水
@@ -58,6 +63,9 @@ public class WxBalanceController {
         // 获取订单总金额
         BigDecimal team_amount = orderService.getTeamAmount(userId);
         data.put("teamAmount", team_amount);
+        // 获取订单抽成比例
+//        LitemallAgentCommissionConfig agentCommissionConfig = agentCommissionConfigService.queryByKey("rebuy_under_direct");
+//        BigDecimal teamAgentCommission = agentCommissionConfig.getConfigValue();
 
         // 获取区域代理总金额
         int agent_role_id = user.getAgentRoleId();

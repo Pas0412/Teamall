@@ -44,7 +44,8 @@
     "pages/vip/becomeVip/becomeVip",
     "pages/vip/vipHome/vipHome",
     "pages/ucenter/balance/balance",
-    "pages/ucenter/qrCode/qrCode"
+    "pages/ucenter/qrCode/qrCode",
+    "pages/withdraw/withdraw"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",

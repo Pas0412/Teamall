@@ -1,0 +1,47 @@
+<!-- withdraw.wxml -->
+<view class="container">
+  <!-- 余额信息 -->
+  <view class="balance-info">
+    <text class="balance-label">当前可用余额</text>
+    <text class="balance-amount">¥{{currentBalance}}</text>
+  </view>
+  
+  <!-- 提现表单 -->
+  <view class="withdraw-form">
+    <view class="form-item">
+      <text class="item-label">提现金额</text>
+      <view class="input-wrapper">
+        <text class="currency-sign">¥</text>
+        <input type="digit" class="amount-input" placeholder="请输入提现金额" bindinput="onAmountInput" value="{{withdrawAmount}}"/>
+      </view>
+      <button class="all-in-btn" bindtap="allIn">全部提现</button>
+    </view>
+    
+    <view class="form-item fee-info">
+      <text class="item-label">手续费 ({{feeRate*100}}%)</text>
+      <text class="item-value">¥{{serviceFee}}</text>
+    </view>
+    
+    <view class="form-item actual-amount">
+      <text class="item-label">实际到账</text>
+      <text class="item-value amount-highlight">¥{{actualAmount}}</text>
+    </view>
+    
+    <view class="tips">
+      <text class="tips-text">最低提现金额: ¥{{minWithdraw}}</text>
+    </view>
+  </view>
+  
+  <!-- 提现按钮 -->
+  <view class="submit-area">
+    <button class="submit-btn" bindtap="submitWithdraw">确认提现</button>
+  </view>
+  
+  <!-- 提示框 -->
+  <view wx:if="{{showTips}}" class="tips-modal">
+    <view class="tips-content">
+      <text>{{tipsContent}}</text>
+      <image class="close-icon" src="/static/images/close.png" bindtap="closeTips"></image>
+    </view>
+  </view>
+</view>    

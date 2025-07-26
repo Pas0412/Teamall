@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.linlinjava.litemall.db.dao.LitemallWithdrawMapper">
+
+    <!-- 插入提现记录 -->
+    <insert id="insert" parameterType="org.linlinjava.litemall.db.domain.LitemallWithdraw">
+        INSERT INTO litemall_withdraw
+        (user_id, amount, status, out_trade_no, withdraw_no, remark, create_time, version)
+        VALUES
+            (#{userId}, #{amount}, #{status}, #{outTradeNo}, #{withdrawNo}, #{remark}, NOW(), 0)
+    </insert>
+
+    <!-- 根据ID查询提现记录 -->
+    <select id="selectById" parameterType="java.lang.Integer" resultType="org.linlinjava.litemall.db.domain.LitemallWithdraw">
+        SELECT * FROM litemall_withdraw WHERE id = #{id}
+    </select>
+
+    <!-- 根据商户订单号查询提现记录 -->
+    <select id="selectByOutTradeNo" parameterType="java.lang.String" resultType="org.linlinjava.litemall.db.domain.LitemallWithdraw">
+        SELECT * FROM litemall_withdraw WHERE out_trade_no = #{outTradeNo}
+    </select>
+
+    <!-- 更新提现记录（带乐观锁） -->
+    <update id="updateWithVersion" parameterType="org.linlinjava.litemall.db.domain.LitemallWithdraw">
+        UPDATE litemall_withdraw
+        SET amount = #{amount},
+            status = #{status},
+            out_trade_no = #{outTradeNo},
+            withdraw_no = #{withdrawNo},
+            remark = #{remark},
+            update_time = NOW(),
+            version = version + 1
+        WHERE id = #{id}
+          AND version = #{version}
+    </update>
+
+    <!-- 更新提现记录（不带乐观锁） -->
+    <update id="update" parameterType="org.linlinjava.litemall.db.domain.LitemallWithdraw">
+        UPDATE litemall_withdraw
+        SET amount = #{amount},
+            status = #{status},
+            out_trade_no = #{outTradeNo},
+            withdraw_no = #{withdrawNo},
+            remark = #{remark},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+</mapper>

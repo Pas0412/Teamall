@@ -118,7 +118,7 @@
     message, goods_price, freight_price, coupon_price, integral_price, groupon_price, 
     order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, refund_amount, 
     refund_type, refund_content, refund_time, confirm_time, comments, end_time, add_time, 
-    update_time, deleted, agent_role_id, team_commission, province_commission, city_commission, 
+    update_time, deleted, agent_role_id, team_commission, province_commission, city_commission,
     county_commission
   </sql>
   <select id="selectByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallOrderExample" resultMap="BaseResultMap">
@@ -380,6 +380,10 @@
       <if test="countyCommission != null">
         county_commission,
       </if>
+      <if test="productIds != null">
+        productIds,
+      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -486,6 +490,9 @@
       </if>
       <if test="countyCommission != null">
         #{countyCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="productIds != null">
+        #{productIds,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

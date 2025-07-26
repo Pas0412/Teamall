@@ -108,8 +108,9 @@ Page({
     let that = this;
     util.request(api.IndexUrl).then(function (res) {
       if (res.errno === 0) {
+        const filteredNewGoods = res.data.newGoodsList.filter(item => item.id !== 1181004);
         that.setData({
-          newGoods: res.data.newGoodsList,
+          newGoods: filteredNewGoods,
           hotGoods: res.data.hotGoodsList,
           topics: res.data.topicList,
           brands: res.data.brandList,

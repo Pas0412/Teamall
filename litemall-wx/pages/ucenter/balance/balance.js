@@ -8,8 +8,6 @@ Page({
     lastUpdated: '2023-07-05 14:30',
     teamAmount: 0.00,
     agentAmount: 0.00,
-    teamCommissionAmount: 0.00,
-    agentCommissionAmount: 0.00,
     isAgent: false
   },
 
@@ -25,7 +23,10 @@ Page({
 
   onWithdraw() {
     // 处理提现逻辑
-    wx.showToast({ title: '进入提现页面' });
+    wx.navigateTo({
+      url: '/pages/withdraw/withdraw'
+    });
+
   },
 
   showDetails() {

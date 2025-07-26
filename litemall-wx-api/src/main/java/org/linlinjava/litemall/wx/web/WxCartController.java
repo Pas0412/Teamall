@@ -161,7 +161,7 @@ public class WxCartController {
             // 判断是否为会员
             LitemallUser user = userService.findById(userId);
             LocalDateTime now = LocalDateTime.now(); // 当前时间
-            if (now.isAfter(user.getVipExpireTime())) { // 判断是否超过过期时间
+            if (user.getVipExpireTime()!=null&&now.isAfter(user.getVipExpireTime())) { // 判断是否超过过期时间
                 cart.setPrice(goods.getCounterPrice());
             }
             else {
@@ -227,14 +227,15 @@ public class WxCartController {
         LitemallCart existCart = cartService.queryExist(goodsId, productId, userId);
         if (existCart == null) {
             //取得规格的信息,判断规格库存
-            if (product == null || number > product.getNumber()) {
+            // 会员是1111111
+             if ((product == null || number > product.getNumber())&&!productId.equals(1111111)) {
                 return ResponseUtil.fail(GOODS_NO_STOCK, "库存不足");
             }
 
             cart.setId(null);
             cart.setGoodsSn(goods.getGoodsSn());
             cart.setGoodsName((goods.getName()));
-            if(StringUtils.isEmpty(product.getUrl())){
+            if(product==null||StringUtils.isEmpty(product.getUrl())){
                 cart.setPicUrl(goods.getPicUrl());
             }
             else{
@@ -245,20 +246,24 @@ public class WxCartController {
             // 判断是否为会员
             LitemallUser user = userService.findById(userId);
             LocalDateTime now = LocalDateTime.now(); // 当前时间
-            if (now.isAfter(user.getVipExpireTime())) { // 判断是否超过过期时间
+            if (user.getVipExpireTime()!=null&&now.isAfter(user.getVipExpireTime())) { // 判断是否超过过期时间
                 cart.setPrice(goods.getCounterPrice());
             }
             else {
                 cart.setPrice(goods.getRetailPrice());
             }
-            cart.setSpecifications(product.getSpecifications());
+            if(product!=null) {
+                cart.setSpecifications(product.getSpecifications());
+            }else{
+                cart.setSpecifications(new String[]{"默认规格"});
+            }
             cart.setUserId(userId);
             cart.setChecked(true);
             cartService.add(cart);
         } else {
             //取得规格的信息,判断规格库存
             int num = number;
-            if (num > product.getNumber()) {
+            if (product!=null&&num > product.getNumber()) {
                 return ResponseUtil.fail(GOODS_NO_STOCK, "库存不足");
             }
             existCart.setNumber((short) num);

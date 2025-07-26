@@ -261,7 +261,7 @@ public class WxOrderService {
         String message = JacksonUtil.parseString(body, "message");
         Integer grouponRulesId = JacksonUtil.parseInteger(body, "grouponRulesId");
         Integer grouponLinkId = JacksonUtil.parseInteger(body, "grouponLinkId");
-
+        //Integer grouponLinkId = JacksonUtil.parseInteger(body, "productId");
         //如果是团购项目,验证活动是否有效
         if (grouponRulesId != null && grouponRulesId > 0) {
             LitemallGrouponRules rules = grouponRulesService.findById(grouponRulesId);
@@ -415,6 +415,17 @@ public class WxOrderService {
             order.setGrouponPrice(new BigDecimal(0));    //  团购价格
         }
 
+        // 收集所有商品的ProductId
+        StringBuilder productIdsBuilder = new StringBuilder();
+        for (LitemallCart cartGoods : checkedGoodsList) {
+            if (productIdsBuilder.length() > 0) {
+                productIdsBuilder.append(",");
+            }
+            productIdsBuilder.append(cartGoods.getProductId());
+        }
+        String productIds = productIdsBuilder.toString();
+
+        order.setProductIds(productIds);
         // 添加订单表项
         orderService.add(order);
         orderId = order.getId();
@@ -448,13 +459,15 @@ public class WxOrderService {
         for (LitemallCart checkGoods : checkedGoodsList) {
             Integer productId = checkGoods.getProductId();
             LitemallGoodsProduct product = productService.findById(productId);
+            if(product!=null) {
+                int remainNumber = product.getNumber() - checkGoods.getNumber();
+                if (remainNumber < 0) {
+                    throw new RuntimeException("下单的商品货品数量大于库存量");
+                }
 
-            int remainNumber = product.getNumber() - checkGoods.getNumber();
-            if (remainNumber < 0) {
-                throw new RuntimeException("下单的商品货品数量大于库存量");
-            }
-            if (productService.reduceStock(productId, checkGoods.getNumber()) == 0) {
-                throw new RuntimeException("商品货品库存减少失败");
+                if (productService.reduceStock(productId, checkGoods.getNumber()) == 0) {
+                    throw new RuntimeException("商品货品库存减少失败");
+                }
             }
         }
 

@@ -310,6 +310,9 @@ public class WxOrderService {
             return ResponseUtil.badArgument();
         }
 
+        // 根据收货地址获取区级id
+        Integer agentRoleId = regionService.findByCounty(checkedAddress.getCounty());
+
         // 团购优惠
         BigDecimal grouponPrice = new BigDecimal(0);
         LitemallGrouponRules grouponRules = grouponRulesService.findById(grouponRulesId);
@@ -389,6 +392,7 @@ public class WxOrderService {
         order.setOrderPrice(orderTotalPrice);
         order.setActualPrice(actualPrice);
         order.setAgentRoleId(checkedAddress.getId());
+        order.setAgentRoleId(agentRoleId);
 
         // 判断货品是不是会员, 是的话不产生佣金
         if (isVip){

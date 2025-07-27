@@ -33,6 +33,23 @@ public class LitemallRegionService {
         return regionMapper.selectByPrimaryKey(id);
     }
 
+    public Integer findByCounty(String county){
+        LitemallRegionExample example = new LitemallRegionExample();
+        LitemallRegionExample.Criteria criteria = example.createCriteria();
+
+        if (!StringUtils.isEmpty(county)) {
+            criteria.andNameLike("%" + county + "%");
+        }
+        criteria.andTypeEqualTo((byte) 3);
+        List<LitemallRegion> regions = regionMapper.selectByExample(example);
+        if (!regions.isEmpty()) {
+            // 返回第一个匹配项的 id，或者你可以根据业务逻辑决定返回哪一个
+            return regions.get(0).getId();
+        }
+
+        return null; // 没有找到匹配项时返回 null
+    }
+
     public List<LitemallRegion> querySelective(String name, Integer code, Integer page, Integer size, String sort, String order) {
         LitemallRegionExample example = new LitemallRegionExample();
         LitemallRegionExample.Criteria criteria = example.createCriteria();

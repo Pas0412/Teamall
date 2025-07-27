@@ -49,6 +49,7 @@
 
         <javaTypeResolver>
             <property name="useJSR310Types" value="true"/>
+            <property name="forceBigDecimalsForDecimals" value="true"/>
         </javaTypeResolver>
 
         <javaModelGenerator targetPackage="org.linlinjava.litemall.db.domain" targetProject="src/main/java"/>

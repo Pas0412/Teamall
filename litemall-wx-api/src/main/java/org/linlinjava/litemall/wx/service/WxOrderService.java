@@ -40,10 +40,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.linlinjava.litemall.wx.util.WxResponseCode.*;
 
@@ -322,10 +319,14 @@ public class WxOrderService {
 
         // 货品价格
         List<LitemallCart> checkedGoodsList = null;
+        boolean isVip = false;
         if (cartId.equals(0)) {
             checkedGoodsList = cartService.queryByUidAndChecked(userId);
         } else {
             LitemallCart cart = cartService.findById(cartId);
+            if (Objects.equals(cart.getGoodsSn(), "1")){
+                isVip = true;
+            }
             checkedGoodsList = new ArrayList<>(1);
             checkedGoodsList.add(cart);
         }
@@ -388,25 +389,35 @@ public class WxOrderService {
         order.setOrderPrice(orderTotalPrice);
         order.setActualPrice(actualPrice);
         order.setAgentRoleId(checkedAddress.getId());
-        // 获取订单抽成比例
-        LitemallAgentCommissionConfig teamAgentCommissionConfig = agentCommissionConfigService.queryByKey("rebuy_under_direct");
-        BigDecimal teamAgentCommission = teamAgentCommissionConfig.getConfigValue();
-        order.setTeamCommission(actualPrice.multiply(teamAgentCommission));
 
-        // 获取省代佣金
-        LitemallAgentCommissionConfig provinceAgentCommissionConfig = agentCommissionConfigService.queryByKey("province_agent");
-        BigDecimal provinceAgentCommission = provinceAgentCommissionConfig.getConfigValue();
-        order.setProvinceCommission(actualPrice.multiply(provinceAgentCommission));
+        // 判断货品是不是会员, 是的话不产生佣金
+        if (isVip){
+            order.setTeamCommission(BigDecimal.ZERO);
+            order.setProvinceCommission(BigDecimal.ZERO);
+            order.setCityCommission(BigDecimal.ZERO);
+            order.setCountyCommission(BigDecimal.ZERO);
+        }
+        else{
+            // 获取订单抽成比例
+            LitemallAgentCommissionConfig teamAgentCommissionConfig = agentCommissionConfigService.queryByKey("rebuy_under_direct");
+            BigDecimal teamAgentCommission = teamAgentCommissionConfig.getConfigValue();
+            order.setTeamCommission(actualPrice.multiply(teamAgentCommission));
 
-        // 获取市代佣金
-        LitemallAgentCommissionConfig cityAgentCommissionConfig = agentCommissionConfigService.queryByKey("city_agent");
-        BigDecimal cityAgentCommission = cityAgentCommissionConfig.getConfigValue();
-        order.setCityCommission(actualPrice.multiply(cityAgentCommission));
+            // 获取省代佣金
+            LitemallAgentCommissionConfig provinceAgentCommissionConfig = agentCommissionConfigService.queryByKey("province_agent");
+            BigDecimal provinceAgentCommission = provinceAgentCommissionConfig.getConfigValue();
+            order.setProvinceCommission(actualPrice.multiply(provinceAgentCommission));
 
-        // 获取区代佣金
-        LitemallAgentCommissionConfig countyAgentCommissionConfig = agentCommissionConfigService.queryByKey("county_agent");
-        BigDecimal countyAgentCommission = countyAgentCommissionConfig.getConfigValue();
-        order.setCountyCommission(actualPrice.multiply(countyAgentCommission));
+            // 获取市代佣金
+            LitemallAgentCommissionConfig cityAgentCommissionConfig = agentCommissionConfigService.queryByKey("city_agent");
+            BigDecimal cityAgentCommission = cityAgentCommissionConfig.getConfigValue();
+            order.setCityCommission(actualPrice.multiply(cityAgentCommission));
+
+            // 获取区代佣金
+            LitemallAgentCommissionConfig countyAgentCommissionConfig = agentCommissionConfigService.queryByKey("county_agent");
+            BigDecimal countyAgentCommission = countyAgentCommissionConfig.getConfigValue();
+            order.setCountyCommission(actualPrice.multiply(countyAgentCommission));
+        }
 
         // 有团购
         if (grouponRules != null) {
@@ -425,7 +436,7 @@ public class WxOrderService {
         }
         String productIds = productIdsBuilder.toString();
 
-        order.setProductIds(productIds);
+        order.setProductids(productIds);
         // 添加订单表项
         orderService.add(order);
         orderId = order.getId();

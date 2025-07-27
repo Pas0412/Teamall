@@ -42,6 +42,7 @@
     <result column="province_commission" jdbcType="DECIMAL" property="provinceCommission" />
     <result column="city_commission" jdbcType="DECIMAL" property="cityCommission" />
     <result column="county_commission" jdbcType="DECIMAL" property="countyCommission" />
+    <result column="productIds" jdbcType="VARCHAR" property="productids" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -118,8 +119,8 @@
     message, goods_price, freight_price, coupon_price, integral_price, groupon_price, 
     order_price, actual_price, pay_id, pay_time, ship_sn, ship_channel, ship_time, refund_amount, 
     refund_type, refund_content, refund_time, confirm_time, comments, end_time, add_time, 
-    update_time, deleted, agent_role_id, team_commission, province_commission, city_commission,
-    county_commission
+    update_time, deleted, agent_role_id, team_commission, province_commission, city_commission, 
+    county_commission, productIds
   </sql>
   <select id="selectByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallOrderExample" resultMap="BaseResultMap">
     <!--
@@ -251,7 +252,8 @@
       confirm_time, comments, end_time, 
       add_time, update_time, deleted, 
       agent_role_id, team_commission, province_commission, 
-      city_commission, county_commission)
+      city_commission, county_commission, productIds
+      )
     values (#{userId,jdbcType=INTEGER}, #{orderSn,jdbcType=VARCHAR}, #{orderStatus,jdbcType=SMALLINT}, 
       #{aftersaleStatus,jdbcType=SMALLINT}, #{consignee,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DECIMAL}, 
@@ -263,7 +265,8 @@
       #{confirmTime,jdbcType=TIMESTAMP}, #{comments,jdbcType=SMALLINT}, #{endTime,jdbcType=TIMESTAMP}, 
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, 
       #{agentRoleId,jdbcType=INTEGER}, #{teamCommission,jdbcType=DECIMAL}, #{provinceCommission,jdbcType=DECIMAL}, 
-      #{cityCommission,jdbcType=DECIMAL}, #{countyCommission,jdbcType=DECIMAL})
+      #{cityCommission,jdbcType=DECIMAL}, #{countyCommission,jdbcType=DECIMAL}, #{productids,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.linlinjava.litemall.db.domain.LitemallOrder">
     <!--
@@ -380,10 +383,9 @@
       <if test="countyCommission != null">
         county_commission,
       </if>
-      <if test="productIds != null">
+      <if test="productids != null">
         productIds,
       </if>
-
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -491,8 +493,8 @@
       <if test="countyCommission != null">
         #{countyCommission,jdbcType=DECIMAL},
       </if>
-      <if test="productIds != null">
-        #{productIds,jdbcType=VARCHAR},
+      <if test="productids != null">
+        #{productids,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -621,6 +623,9 @@
       <if test="record.countyCommission != null">
         county_commission = #{record.countyCommission,jdbcType=DECIMAL},
       </if>
+      <if test="record.productids != null">
+        productIds = #{record.productids,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -667,7 +672,8 @@
       team_commission = #{record.teamCommission,jdbcType=DECIMAL},
       province_commission = #{record.provinceCommission,jdbcType=DECIMAL},
       city_commission = #{record.cityCommission,jdbcType=DECIMAL},
-      county_commission = #{record.countyCommission,jdbcType=DECIMAL}
+      county_commission = #{record.countyCommission,jdbcType=DECIMAL},
+      productIds = #{record.productids,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -784,6 +790,9 @@
       <if test="countyCommission != null">
         county_commission = #{countyCommission,jdbcType=DECIMAL},
       </if>
+      <if test="productids != null">
+        productIds = #{productids,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -827,7 +836,8 @@
       team_commission = #{teamCommission,jdbcType=DECIMAL},
       province_commission = #{provinceCommission,jdbcType=DECIMAL},
       city_commission = #{cityCommission,jdbcType=DECIMAL},
-      county_commission = #{countyCommission,jdbcType=DECIMAL}
+      county_commission = #{countyCommission,jdbcType=DECIMAL},
+      productIds = #{productids,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallOrderExample" resultMap="BaseResultMap">
